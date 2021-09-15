@@ -1,0 +1,43 @@
+﻿@model MasVidaWebMVC.Parameter
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Parameter</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParameterName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ParameterName)
+            @Html.ValidationMessageFor(model => model.ParameterName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParameterValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ParameterValue)
+            @Html.ValidationMessageFor(model => model.ParameterValue)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

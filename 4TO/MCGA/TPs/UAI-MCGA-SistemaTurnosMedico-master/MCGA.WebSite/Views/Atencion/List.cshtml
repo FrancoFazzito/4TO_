@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<MCGA.Entities.Atencion>
+@{
+    ViewBag.Title = "Atención de afiliado";
+    ViewBag.Description = "En esta página vamos a poder ver el historial de atención de afiliados";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(AtencionControllerRoute.GetList)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <h2>
+            Atención de @ViewBag.Afiliado
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-sm table-light table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+                            @Html.Raw("Fecha hora de llegada")
+                        </th>
+                        <th>
+                            @Html.Raw("Fecha hora de atención")
+                        </th>
+                        <th>
+                            @Html.Raw("Atendido por")
+                        </th>
+                        <th>
+                            @Html.Raw("Síntomas")
+                        </th>
+                        <th>
+                            @Html.Raw("Diagnóstico")
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.hora_llegada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.hora_atencion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Turno.EspecialidadesProfesional.Profesional.Nombre)
+                            @Html.DisplayFor(modelItem => item.Turno.EspecialidadesProfesional.Profesional.Apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sintomas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.diagnostico)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("List", new { @ViewBag.AfiliadoId, page }))
+<p class="text-center">
+    Página <strong>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)</strong> de <strong>@Model.PageCount</strong>
+</p>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('table').stacktable();
+        });
+    </script>
+}

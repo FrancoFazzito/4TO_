@@ -1,0 +1,214 @@
+﻿@model MasVidaWebMVC.Transaction
+@using MasVidaWebMVC.Common;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Imprimir  @Model.TransactionType.TransactionTypeName</title>
+
+      <style type="text/css">
+        body {
+            padding: 0;
+        }
+
+        #contenedor {
+            max-width: 1200px;
+            min-width: 500px;
+            margin: auto;
+        }
+
+        th, td {
+            padding: 2px 8px;
+            border: 1px solid black;
+        }
+
+        .col_inter th, .col_inter td {
+            border: 0;
+        }
+
+        table {
+            text-align: left;
+            width: 100%;
+            /*border-collapse: collapse;*/
+            border-collapse: separate;
+            border-spacing: 2px 0px;
+        }
+
+        th {
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 100;
+        }
+
+        hr {
+            margin: 3px 0;
+        }
+
+        img {
+            margin: 3px 0;
+        }
+
+        .ellipsis {
+            text-overflow: ellipsis;
+            /* Required for text-overflow to do anything */
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        @* <h1>Comprobantes</h1>*@
+
+          @*  <table>
+                <tr>
+                    <th>
+                        <img src="~/img/logo-masvida-small.png" />
+                    </th>
+                    <th>
+                        <img src="~/img/logo-masvida-small.png" />
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <th>
+                        @Model.TransactionType.TransactionTypeName Nro: @Model.TransactionID<br />
+                        Cliente Nro: @Model.Users.UserID<br />
+                        @Model.Users.Name @Model.Users.LastName<br />
+                        (imprimir los integrantes del grupo familiar)<br />
+                        @Model.ProductName - $@Model.ProductPrice<br />
+                        Otros Datos<br />
+                        Saldo: $@Model.Users.AccountTotal<br />
+                    </th>
+                    <th>
+                        @Model.TransactionType.TransactionTypeName Nro: @Model.TransactionID<br />
+                        Cliente Nro: @Model.Users.UserID<br />
+                        @Model.Users.Name @Model.Users.LastName<br />
+                        (imprimir los integrantes del grupo familiar)<br />
+                        @Model.ProductName - $@Model.ProductPrice<br />
+                        Otros Datos<br />
+                        Saldo: $@Model.Users.AccountTotal<br />
+                    </th>
+                </tr>
+
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                        Maria S. Pereyra 591 - Acebal - Santa Fe - 2109 / 03469 15690110 - 03469 15690121 - 03469 420553 - 03469 420274
+                    </th>
+                </tr>
+            </table>*@
+
+
+        <table width="100%" style="margin-bottom: 19px;">
+                <tr>
+                    <th width="30%">
+                         <img src="~/img/logo-masvida-small.png" />
+                    </th>
+                    <th width="70%" style="padding-left: 3%;">
+                         <img src="~/img/logo-masvida-small.png" />
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <th width="30%" rowspan="2" valign="top">
+                        <table width="100%" class="col_inter">
+                            <tr>
+                                <td>@ViewBag.Month - @DateTime.Now.ToString("dd/MM/yy")</td>
+                            </tr>
+                            <tr>
+                                <td>COMPROBANTE N&#186;: <strong>@Model.TransactionID</strong></td>
+                            </tr>
+                        </table>
+                        <table width="100%" height="90" class="col_inter">
+                            <tr>
+                                <td valign="top">
+                                    <hr />
+                                    <strong>• @Model.Users.Name @Model.Users.LastName</strong>
+                                    <hr />
+                                    Saldo: <strong>$@Model.Users.AccountTotal</strong>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>@Model.ProductName: <strong>$@Model.ProductPrice</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Direcci&oacute;n: @Model.Users.Address</td>
+                            </tr>
+                        </table>
+                       @* <table width="100%" class="col_inter">
+                            <tr>
+                                <td>@item.Transactions.Last().ProductName: <strong>$@item.Transactions.Last().ProductPrice</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Direcci&oacute;n: @item.Address</td>
+                            </tr>
+                        </table>*@
+                    </th>
+
+                    <th width="70%" style="padding-left: 3%; padding-right: 3%;">
+                        <table width="100%" class="col_inter">
+                            <tr>
+                                <td width="50%">COMPROBANTE N&#186;: <strong>@Model.TransactionID</strong></td>
+                                <td width="50%" align="right">MES @ViewBag.Month - @DateTime.Now.ToString("dd/MM/yy")</td>
+                            </tr>
+                        </table>
+                        <table width="100%" class="col_inter">
+                            <tr>
+                                <td height="80" valign="top">
+                                     <hr />
+                                    <strong>• @Model.Users.Name @Model.Users.LastName</strong>
+                                    <hr />
+                                    @if (Model.Users.FamiliesGroup != null)
+                                    {
+                                        if (Model.Users.FamiliesGroup.Users.Count > 5)
+                                        {
+                                            <span>@Model.Users.FamiliesGroup.FamilyName...</span>
+                                        }
+                                        else
+                                        {
+                                            foreach (var u in Model.Users.FamiliesGroup.Users)
+                                            {
+                                                <span>@u.Name @u.LastName, </span>
+                                            }
+                                        }
+                                        
+                                    }
+                            </tr>
+                        </table>
+                        <table width="100%" class="col_inter">
+                          @*  <tr>
+                                <td width="20%"</td>
+                                <td width="80%"></td>
+                            </tr>*@
+                            <tr>
+                                <td>@Model.ProductName: <strong>$@Model.ProductPrice</strong> - Saldo: <strong>$@Model.Users.AccountTotal</td>
+                            </tr>
+                            <tr>
+                                <td>Direcci&oacute;n: @Model.Users.Address</td>
+                            </tr>
+                        </table>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th width="70%" align="center" style="font-size: 11px;">MARIA S. PEREYRA 591 - ACEBAL - SANTA FE - TEL. (03469) 156-90110 / 15690121 - (03469) 420553/420274 
+                    </th>
+                </tr>
+            </table>
+
+
+
+    </div>
+</body>
+</html>

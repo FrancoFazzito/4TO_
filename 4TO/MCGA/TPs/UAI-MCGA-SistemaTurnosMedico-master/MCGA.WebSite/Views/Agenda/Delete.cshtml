@@ -1,0 +1,109 @@
+﻿@model MCGA.Entities.Agenda
+@{
+    ViewBag.Title = "Agenda";
+    ViewBag.Description = "En esta página vamos a poder eliminar agendas del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(AgendaControllerRoute.GetDelete)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<h2>Eliminar <small>agenda</small></h2>
+
+<h3>¿Estás seguro?</h3>
+<hr class="hrSinMarginTop" />
+<div class="content-personalizado">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Raw("Profesional")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EspecialidadesProfesional.Profesional.Nombre)
+            @Html.DisplayFor(model => model.EspecialidadesProfesional.Profesional.Apellido)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EspecialidadProfesionalId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EspecialidadesProfesional.Especialidad.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoDiaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDia.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_desde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_desde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_hasta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_hasta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hora_desde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hora_desde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hora_hasta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hora_hasta)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group text-right paddingLeftRight_15">
+            <div class="form-actions no-color">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    }
+    <div>
+        <a class="btn btn-sm" href="@Url.Action("Index", "Agenda")">
+            <i class="fa fa-chevron-circle-left"></i>
+            Volver al listado
+        </a>
+    </div>
+</div>

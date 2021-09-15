@@ -1,0 +1,174 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<MCGA.Entities.Afiliado>
+
+@{
+    ViewBag.Title = "Afiliado";
+    ViewBag.Description = "En esta página vamos a poder gestionar los afiliados del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(AfiliadoControllerRoute.GetIndex)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12">
+        <h2>
+            Afiliado
+        </h2>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="float-lg-right float-md-right float-sm-none">
+            <div class="btn-group" role="group">
+                <a title="Agregar afiliado" class="btn btn-sm btn-primary" href="@Url.Action("Create", "Afiliado")">
+                    <i class="fa fa-plus-circle"></i>
+                    Agregar
+                </a>
+                <a title="Descargar a Excel" class="btn btn-sm btn-success" href="@Url.Action("ExportExcel", "Afiliado")">
+                    <i class="fa fa-download"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-sm table-light table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+                            @Html.Raw("Nombre completo")
+                        </th>
+                        <th>
+                            @Html.Raw("Tipo de documento") 
+                        </th>
+                        <th>
+                            @Html.Raw("Nº de documento")
+                        </th>
+                        <th>
+                            @Html.Raw("Dirección")
+                        </th>
+                        <th>
+                            @Html.Raw("Teléfono")
+                        </th>
+                        <th>
+                            @Html.Raw("Email")
+                        </th>
+                        <th>
+                            @Html.Raw("Sexo")
+                        </th>
+                        <th>
+                            @Html.Raw("Fecha de nacimiento")
+                        </th>
+                        <th>
+                            @Html.Raw("Estado civil")
+                        </th>
+                        <th>
+                            @Html.Raw("Nº de afiliado")
+                        </th>
+                        <th>
+                            @Html.Raw("Plan")
+                        </th>
+                        <th>
+                            @Html.Raw("Habilitado")
+                        </th>
+                        <th style="width:10%;"></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre) @Html.DisplayFor(modelItem => item.Apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoDocumento.descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Numero)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoSexo.descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EstadoCivil.descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumeroAfiliado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Plan.descripcion)
+                        </td>
+                        <td>
+                            @if (item.Habilitado)
+                            {
+                                <span>SI</span>
+                            }
+                            else
+                            {
+                                <span>NO</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="float-right">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-secondary btn-sm" title="Editar" href="@Url.Action("Edit", "Afiliado",new { id = item.Id })">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="btn btn-info btn-sm" title="Editar" href="@Url.Action("List", "Atencion",new { afiliadoId = item.Id })">
+                                        <i class="fa fa-list-ul"></i>
+                                    </a>
+                                    <a class="btn btn-dark btn-sm" title="Datos adicionales" href="@Url.Action("Create", "DatoAdicionalAfiliado",new { afiliadoId = item.Id })">
+                                        <i class="fa fa-file-text-o"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" title="Eliminar" href="@Url.Action("Delete", "Afiliado",new { id = item.Id })">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<p class="text-center">
+    Página <strong>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)</strong> de <strong>@Model.PageCount</strong>
+</p>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('table').stacktable();
+        });
+    </script>
+}

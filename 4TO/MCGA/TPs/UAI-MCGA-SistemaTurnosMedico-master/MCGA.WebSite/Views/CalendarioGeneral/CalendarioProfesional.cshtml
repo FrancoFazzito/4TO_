@@ -1,0 +1,431 @@
+﻿@{
+    ViewBag.Title = "Calendario de profesional";
+    ViewBag.Description = "En esta página vamos a poder ver el calendario del profesional que se seleccione.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(CalendarioGeneralControllerRoute.GetCalendarioProfesional)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+<style type="text/css">
+    #desde::before {
+        content: "Desde";
+        padding-right: 10px;
+        color: #afafaf;
+    }
+</style>
+
+
+<h2>Calendario de profesional</h2>
+<hr class="hrSinMarginTop" />
+
+<div class="form-horizontal content-personalizado">
+    <div class="row marginUnset">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="form-group">
+                <input id="desde" class="form-control form-control-sm inputSinMaxWidth" type="date" />
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="form-group">
+                @Html.DropDownList("ProfesionalId", null, htmlAttributes: new { @class = "form-control form-control-sm inputSinMaxWidth" })
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-12 col-sm-12">
+            <div class="form-group">
+                <a id="buscar" title="Buscar calendario" class="btn btn-sm btn-secondary text-white" onclick="CargarCalendario();">
+                    <i class="fa fa-search"></i>
+                    <span class="d-xl-none d-lg-none">Buscar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-6">
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <div class="row marginUnset" id="tituloReferenciaEspecialidadColor">
+    </div>
+    <div class="row marginUnset mb-2" id="referenciaEspecialidadColor">
+    </div>
+</div>
+
+<div class="modal fade" id="nuevoTurno">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-light">
+                <h4 class="modal-title">Nuevo turno</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <p> <label class="font-weight-bold">Fecha y hora: </label> <label id="SubTitulo"></label></p>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.Label("Afiliado", null, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("BuscarAfiliado", null,
+                                new
+                                {
+                                    @class = "form-control inputSinMaxWidth",
+                                    autocomplete = "off",
+                                    placeholder = "Ingrese el afiliado"
+                                })
+                                @Html.Hidden("AfiliadoId")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.Label("Reserva", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="cboTipoReserva" class="form-control" onchange="$('#Reserva').val($('#cboTipoReserva').val());"></select>
+                                @Html.Hidden("Reserva")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.Label("Observaciones", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("Observaciones", new { htmlAttributes = new { @class = "form-control inputSinMaxWidth" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.Hidden("Fecha")
+                @Html.Hidden("Hora")
+                @Html.Hidden("EspecialidadProfesionalId")
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger text-white" title="Cancelar" data-dismiss="modal">
+                    <i class="fa fa-ban"></i>
+                    Cancelar
+                </a>
+
+                <a class="btn btn-success text-white" title="Confirmar" onclick="GuardarTurno();">
+                    <i class="fa fa-check-circle"></i>
+                    Confirmar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cancelarTurno">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-light">
+                <h4 class="modal-title">Cancelar turno</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <p> <label class="font-weight-bold">Fecha y hora: </label> <label id="SubTituloFechaHora_Cancelacion"></label></p>
+                        <p> <label class="font-weight-bold">Paciente: </label> <label id="SubTituloAfiliado_Cancelacion"></label></p>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.Label("Tipo de cancelación", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                <select id="cboTipoCancelacion" class="form-control" onchange="$('#TipoCancelacion').val($('#cboTipoCancelacion').val());"></select>
+                                @Html.Hidden("TipoCancelacion")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.Label("Motivo", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.Editor("detalle_cancel", new { htmlAttributes = new { @class = "form-control inputSinMaxWidth" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.Hidden("turno_id")
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-secondary text-white" title="Cerrar" data-dismiss="modal">
+                    <i class="fa fa-close"></i>
+                    Cerrar
+                </a>
+                <a class="btn btn-danger text-white" title="Confirmar" onclick="CancelarTurno();">
+                    <i class="fa fa-check-circle"></i>
+                    Cancelar turno
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_TurnoRegistrado")
+@Html.Partial("_TurnoCancelado")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            // Setear el primer dia de la semana actual
+            $("#desde").val(moment().startOf('isoWeek').format('YYYY-MM-DD'));
+
+            $('#calendar').fullCalendar({
+                themeSystem: 'bootstrap4',
+                locale: 'es',
+                defaultView: 'agendaWeek',
+                allDaySlot: false,
+                minTime: "07:00:00",
+                maxTime: "21:00:00",
+                slotDuration: "01:00:00",
+                nowIndicator: true,
+                header: {
+                    left: '',
+                    center: 'title',
+                    right: 'agendaWeek,agendaDay'
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                    if (calEvent.atendido != true) {
+                        if (calEvent.Id == -1) {
+                            //validar que la fecha sea menor igual a hoy
+                            var fechaTurno = moment(calEvent.start.format('YYYY-MM-DD HH:mm'));
+                            var hoy = moment();
+                            if (hoy > fechaTurno)
+                                alert('Día y horario NO disponible');
+                            else {
+                                Event_Click(calEvent, jsEvent, view);
+                            }
+                        }
+                        else
+                            if(calEvent.cancelado == false)
+                                EventCancelacion_Click(calEvent, jsEvent, view);
+                    }
+                }
+            });
+            CargarCalendario();
+        });
+
+        $("#BuscarAfiliado").autocomplete({
+            autoSelect: true,
+            autoFocus: true,
+            minLength: 1,
+            open: function () {
+                setTimeout(function () {
+                    $('.ui-autocomplete').css('z-index', 99999999999999);
+                }, 0);
+            },
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetAfiliado", "Afiliado")',
+                    datatype: "json",
+                    data: { Areas: '', term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return { label: val.Name, value: val.Name, Id: val.Id };
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#AfiliadoId").val(ui.item.Id);
+            }
+        });
+
+        function Event_Click(calEvent, jsEvent, view)
+        {
+            $("#SubTitulo").text(calEvent.start.format('dddd DD MMM YYYY') + ' ' + calEvent.start.format('HH:mm'));
+            $("#Fecha").val(calEvent.start.format('YYYY-MM-DD'));
+            $("#Hora").val(calEvent.start.format('HH:mm'));
+            $("#EspecialidadProfesionalId").val(calEvent.especialidadProfesionalId);
+            $("#BuscarAfiliado").val('');
+            CargarReservas();
+            $("#Observaciones").val('');
+            $("#nuevoTurno").modal('show');
+        }
+
+        function CargarCalendario() {
+            $('#calendar').fullCalendar('gotoDate', $("#desde").val());
+            $('#calendar').fullCalendar('removeEventSources');
+            $("#referenciaEspecialidadColor").empty();
+            $("#tituloReferenciaEspecialidadColor").empty();
+            $.ajax({
+                url: '@Url.Action("GetCalendarioProfesional", "CalendarioGeneral")',
+                datatype: "json",
+                async: false,
+                data: { fechaDesde: $('#calendar').fullCalendar('getView').start.format('YYYY-MM-DD'), fechaHasta: $('#calendar').fullCalendar('getView').end.format('YYYY-MM-DD'), profesionalId: $("#ProfesionalId").val() },
+                success: function (result) {
+                    var events = [];
+                    $.each(result.Eventos, function (i, data) {
+                        events.push(
+                            {
+                                Id: data.IdTurno,
+                                title: data.Titulo,
+                                description: data.Descripcion,
+                                start: moment(data.FechaInicio).format('YYYY-MM-DD HH:mm'),
+                                end: moment(data.FechaFin).format('YYYY-MM-DD HH:mm'),
+                                backgroundColor: data.BackgroundColor,
+                                borderColor: data.BorderColor,
+                                textColor: data.FontColor,
+                                atendido: data.Atendido,
+                                especialidadProfesionalId: data.EspecialidadProfesionalId,
+                                cancelado: data.Cancelado,
+                                className: 'eventoPersonalizado'
+                            });
+                    });
+                    var divTitulo = $('<div class="col-lg-12 col-md-12 col-sm-12"><label style="font-size:1rem; font-weight:500;">Especialidades</label></div>');
+                    $("#tituloReferenciaEspecialidadColor").append(divTitulo);
+                    $.each(result.EspecialidadColor, function (i, data) {
+                        //Aca poner las referencias de los colores
+                        var divCol = $('<div class="col-lg-2 col-md-2 col-sm-12"></div>');
+                        var divReferenciaEspecialidad = $('<div class="form-group referenciaColor" style="background-color: ' + data.Color + ';"></div>');
+                        divReferenciaEspecialidad.append(data.Descripcion);
+                        divCol.append(divReferenciaEspecialidad);
+                        $("#referenciaEspecialidadColor").append(divCol);
+                    });
+                    $('#calendar').fullCalendar('addEventSource', events);
+                }
+            });
+        }
+
+        function GuardarTurno()
+        {
+            var jsonData = JSON.stringify({
+                'Fecha': $("#Fecha").val(),
+                'Hora': $("#Hora").val(),
+                'AfiliadoId': $("#AfiliadoId").val(),
+                'EspecialidadProfesionalId': $("#EspecialidadProfesionalId").val(),
+                'Reserva': $("#Reserva").val(),
+                'Observaciones': $("#Observaciones").val()
+            });
+            $.ajax({
+                url: '@Url.Action("CreateTurno", "Turno")',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: "json",
+                data: jsonData,
+                success: function (response) {
+                    
+                    if (response != null) {
+                        CargarCalendario();
+                        $("#nuevoTurno").modal('hide');
+                        $('#calendar').fullCalendar('refetchEvents');
+
+                        $('#turnoGenerado').fadeIn(1000);
+                        setTimeout(function () {
+                            $('#turnoGenerado').fadeOut(1000);
+                        }, 5000);
+
+                    } else {
+                        alert("No se registro el turno");
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function CargarReservas() {
+            $.ajax({
+                url: '@Url.Action("GetTipoReseva", "TipoReseva")',
+                datatype: "json",
+                async:false,
+                success: function (data) {
+                    var datos = data;
+                    $("#cboTipoReserva").empty();
+                    for (var i = 0; i < datos.length; i++) {
+                        $("#cboTipoReserva").append($('<option>', {
+                            value: datos[i].Id,
+                            text: datos[i].descripcion
+                        }));
+                    }
+                    $('#reserva').val($('#cboTipoReserva').val());
+                }
+            });
+        }
+
+        function EventCancelacion_Click (calEvent, jsEvent, view) {
+            $("#SubTituloFechaHora_Cancelacion").text(calEvent.start.format('dddd DD MMM YYYY') + ' ' + calEvent.start.format('HH:mm'));
+            $("#SubTituloAfiliado_Cancelacion").text(calEvent.title);
+            $("#turno_id").val(calEvent.Id);
+            $("#detalle_cancel").val('');
+            CargarTipoCancelacion();
+            $("#cancelarTurno").modal('show');
+        }
+
+        function CargarTipoCancelacion() {
+            $.ajax({
+                url: '@Url.Action("GetTipoCancelacion", "TipoCancelacion")',
+                datatype: "json",
+                async:false,
+                success: function (data) {
+                    var datos = data;
+                    $("#cboTipoCancelacion").empty();
+                    for (var i = 0; i < datos.length; i++) {
+                        $("#cboTipoCancelacion").append($('<option>', {
+                            value: datos[i].Id,
+                            text: datos[i].descripcion
+                        }));
+                    }
+                    $('#TipoCancelacion').val($('#cboTipoCancelacion').val());
+                }
+            });
+        }
+
+        function CancelarTurno()
+        {
+            var jsonData = JSON.stringify({
+                'TurnoId': $("#turno_id").val(),
+                'TipoCancelacion': $("#TipoCancelacion").val(),
+                'DetalleCancelacion': $("#detalle_cancel").val()
+            });
+            $.ajax({
+                url: '@Url.Action("CancelarTurno", "Turno")',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: "json",
+                data: jsonData,
+                success: function (response) {
+                    
+                    if (response != null) {
+                        CargarCalendario();
+                        $("#cancelarTurno").modal('hide');
+                        $('#calendar').fullCalendar('refetchEvents');
+
+                        $('#turnoCancelado').fadeIn(1000);
+                        setTimeout(function () {
+                            $('#turnoCancelado').fadeOut(1000);
+                        }, 5000);
+
+                    } else {
+                        alert("No se cancelo el turno");
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    </script>
+}

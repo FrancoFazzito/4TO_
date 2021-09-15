@@ -1,0 +1,8 @@
+global asax errores
+
+descargar visual studio 2015
+
+generar script base de datos, hacer pull a victor
+
+
+Pedir video a victor

@@ -1,0 +1,144 @@
+﻿body {
+    background-color: #bfc9ca;
+    font-family: tahoma, arial, helvetica, sans-serif;
+	font-size: 12px;
+}
+
+table {
+    background-color: #eaeded;
+    padding: 15px;
+    box-shadow: 4px 4px 4px #999;
+}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+.aRight {
+	text-align: right;
+}
+
+.aLeft {
+	text-align: left;
+}
+
+.aCenter {
+	text-align: center;
+}
+
+.aJustify {
+	text-align: justify;
+}
+
+
+table.tablaProductos {
+  background-color: #EEEEEE;
+  width: 50%;
+  margin-left:auto; 
+  margin-right:auto;
+  text-align: left;
+  box-shadow: 8px 8px 8px #999;
+}
+table.tablaProductos td, table.tablaProductos th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.tablaProductos tbody td {
+  font-size: 13px;
+}
+table.tablaProductos tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.tablaProductos thead {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+  border-bottom: 2px solid #444444;
+}
+table.tablaProductos thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table.tablaProductos thead th:first-child {
+  border-left: none;
+}
+
+table.tablaProductos tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #D0E4F5;
+  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+  border-top: 2px solid #444444;
+}
+table.tablaProductos tfoot td {
+  font-size: 14px;
+}
+table.tablaProductos tfoot .links {
+  text-align: right;
+}
+table.tablaProductos tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+table.tablaBitacora {
+  background-color: #EEE7DB;
+  width: 50%;
+  margin-left:auto; 
+  margin-right:auto;
+  text-align: left;
+  box-shadow: 8px 8px 8px #999;
+}
+table.tablaBitacora td, table.tablaBitacora th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.tablaBitacora tbody td {
+  font-size: 13px;
+}
+table.tablaBitacora tr:nth-child(even) {
+  background: #F5C8BF;
+}
+table.tablaBitacora thead {
+  background: #A40808;
+}
+table.tablaBitacora thead th {
+  font-size: 19px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #A40808;
+}
+table.tablaBitacora thead th:first-child {
+  border-left: none;
+}
+
+table.tablaBitacora tfoot {
+  font-size: 13px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background: #A40808;
+}
+table.tablaBitacora tfoot td {
+  font-size: 13px;
+}
+table.tablaBitacora tfoot .links {
+  text-align: right;
+}
+table.tablaBitacora tfoot .links a{
+  display: inline-block;
+  background: #FFFFFF;
+  color: #A40808;
+  padding: 2px 8px;
+  border-radius: 5px;
+}

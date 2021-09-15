@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MasVidaWebMVC.DataModels.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MasVidaWebMVCDataModelsStoreContainer">
+    <EntitySet Name="Audits" EntityType="MasVidaWebMVC.DataModels.Store.Audits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FamiliesGroups" EntityType="MasVidaWebMVC.DataModels.Store.FamiliesGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Parameters" EntityType="MasVidaWebMVC.DataModels.Store.Parameters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="MasVidaWebMVC.DataModels.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="MasVidaWebMVC.DataModels.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TransactionsTypes" EntityType="MasVidaWebMVC.DataModels.Store.TransactionsTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="MasVidaWebMVC.DataModels.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsersTypes" EntityType="MasVidaWebMVC.DataModels.Store.UsersTypes" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Audits_Users" Association="MasVidaWebMVC.DataModels.Store.FK_Audits_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Audits" EntitySet="Audits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Products" Association="MasVidaWebMVC.DataModels.Store.FK_Transactions_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_TransactionsTypes" Association="MasVidaWebMVC.DataModels.Store.FK_Transactions_TransactionsTypes">
+      <End Role="TransactionsTypes" EntitySet="TransactionsTypes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Users" Association="MasVidaWebMVC.DataModels.Store.FK_Transactions_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Audits">
+    <Key>
+      <PropertyRef Name="AuditID" />
+    </Key>
+    <Property Name="AuditID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AuditDescription" Type="varchar" MaxLength="250" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="AuditDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FamiliesGroups">
+    <Key>
+      <PropertyRef Name="FamilyGroupID" />
+    </Key>
+    <Property Name="FamilyGroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FamilyName" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Parameters">
+    <Key>
+      <PropertyRef Name="ParameterID" />
+    </Key>
+    <Property Name="ParameterID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ParameterName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ParameterValue" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ParameterDescription" Type="varbinary" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="ProductDescription" Type="text" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="TransactionCreationDate" Type="datetime" Nullable="false" />
+    <Property Name="TransactionPaymentDate" Type="datetime" />
+    <Property Name="IsPaid" Type="bit" Nullable="false" />
+    <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionsTypes">
+    <Key>
+      <PropertyRef Name="TransactionTypeID" />
+    </Key>
+    <Property Name="TransactionTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionTypeName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="TransactionTypeDescription" Type="text" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DNI" Type="varchar" MaxLength="8" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="25" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="150" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="UserTypeID" Type="int" Nullable="false" />
+    <Property Name="FamilyGroupID" Type="int" />
+    <Property Name="CreationDateTime" Type="datetime" />
+    <Property Name="LastTransactionID" Type="int" />
+    <Property Name="AccountTotal" Type="float" />
+  </EntityType>
+  <EntityType Name="UsersTypes">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Audits_Users">
+    <End Role="Users" Type="MasVidaWebMVC.DataModels.Store.Users" Multiplicity="0..1" />
+    <End Role="Audits" Type="MasVidaWebMVC.DataModels.Store.Audits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Audits">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Products">
+    <End Role="Products" Type="MasVidaWebMVC.DataModels.Store.Products" Multiplicity="1" />
+    <End Role="Transactions" Type="MasVidaWebMVC.DataModels.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_TransactionsTypes">
+    <End Role="TransactionsTypes" Type="MasVidaWebMVC.DataModels.Store.TransactionsTypes" Multiplicity="1" />
+    <End Role="Transactions" Type="MasVidaWebMVC.DataModels.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionsTypes">
+        <PropertyRef Name="TransactionTypeID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="TransactionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Users">
+    <End Role="Users" Type="MasVidaWebMVC.DataModels.Store.Users" Multiplicity="1" />
+    <End Role="Transactions" Type="MasVidaWebMVC.DataModels.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="ASF.Hosts.Web.Global" Language="C#" %>

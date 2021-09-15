@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DAL.Acceso">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAJAAQAAAAAAAAAAAAIAAAAAgAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Acceso.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.backupDAL">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>backupDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.BitacoraDAL">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BitacoraDal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.UsuariosDAL">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAEAAAAAACAAAAgQAAIAAAEAAAAAQAAAAAAA=</HashCode>
+      <FileName>UsuariosDal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.PermisosDAL">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAgAAAIA=</HashCode>
+      <FileName>PermisosDal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.DigitoVerificadorDAL">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAEAAAAAACAAAAgAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitoVerificadorDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.PanaderiasDAL">
+    <Position X="2.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAEAAAAAACAAAAgAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PanaderiasDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.ProductosDAL">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAEAAAAAACAAAAgAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductosDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

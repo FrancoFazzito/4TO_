@@ -1,0 +1,71 @@
+﻿@model MasVidaWebMVC.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Transaction</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionCreationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionCreationDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionPaymentDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionPaymentDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsPaid)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsPaid)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionType.TransactionTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionType.TransactionTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Users.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Users.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TransactionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

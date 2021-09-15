@@ -1,0 +1,130 @@
+﻿@model MasVidaWebMVC.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DNI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DNI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Birthday)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Birthday)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserPassword)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserPassword)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserType.UserTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserType.UserTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FamiliesGroup.FamilyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FamiliesGroup.FamilyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreationDateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDateTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastTransactionID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastTransactionID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AccountTotal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AccountTotal)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

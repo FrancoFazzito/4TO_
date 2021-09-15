@@ -1,0 +1,54 @@
+﻿@model MasVidaWebMVC.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cliente</legend>
+    
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DNI): @Html.DisplayFor(model => model.DNI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayFor(model => model.Phone) | @Html.DisplayFor(model => model.Email) | @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         Fecha de Nacimiento: @Html.DisplayFor(model => model.Birthday)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.ProductName): @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FamiliesGroup.FamilyName): @Html.DisplayFor(model => model.FamiliesGroup.FamilyName)
+    </div>
+
+@*    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreationDateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDateTime)
+    </div>*@
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AccountTotal): $@Html.DisplayFor(model => model.AccountTotal)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@if (Model.Transactions.Count > 0)
+{
+    
+@Html.Partial("_FacturasPartial", (Model.Transactions.ToList()))
+}

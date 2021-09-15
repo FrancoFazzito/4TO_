@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+}
+
+@model ArtMarket.Entities.Model.Order
+
+
+  <div class="order-form form-dialog" style="margin: 20px auto">
+    <h1>Orden Confirmada!</h1>
+    <h2>Tu Orden #@Model.OrderNumber</h2>
+    <div>
+      <hr>
+      <br />
+      <b>Fecha: </b> @Model.OrderDate <br>
+      <b>Cantidad de Productos: </b> @Model.ItemCount <br>
+      <b>Total: $</b> @Model.TotalPrice <br>
+      <br />
+    </div>
+    <br />
+
+    <h2>Detalle de la Orden</h2>
+    <hr>
+    <div>
+      <table class="table">
+        <tr>
+          <th>
+            @Html.DisplayNameFor(model => model.OrderDetail.FirstOrDefault().ProductId)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.OrderDetail.FirstOrDefault().Quantity)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.OrderDetail.FirstOrDefault().Price)
+          </th>
+
+          <th></th>
+        </tr>
+
+        @foreach (var item in Model.OrderDetail)
+        {
+          <tr>
+            <td>
+              @Html.DisplayFor(model => item.ProductId)
+            </td>
+            <td>
+              @Html.DisplayFor(model => item.Quantity)
+            </td>
+            <td>
+              @Html.DisplayFor(model => item.Price)
+            </td>
+          </tr>
+        }
+
+      </table>
+      <br />
+      <br />
+      <div>
+        <button type="button" class="button-principal" onclick="location.href = '@Url.Action("Index", "Home")'">Inicio</button>
+      </div>
+    </div>
+  </div>

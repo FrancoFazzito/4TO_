@@ -1,0 +1,26 @@
+﻿@model IList<ArtMarket.Entities.Model.Product>
+
+
+<div class="search">
+
+    <div class="form-dialog">
+
+        <form method="get" action="/Product/Search">
+            <input type="text" id="txt" name="filter" class="input-text"/>
+            <input type="submit" value="Buscar" />
+        </form>
+
+        <div class="search-panel">
+            @foreach (var item in Model)
+            {
+                <button class="card" onclick="location.href = '@Url.Action("Details", "Product", new { id = item.Id})'">
+                    <img class="search-card-picture" src="/Content/Img/Product/@item.Image" alt="Imagen no disponible" />
+                    <p class="card-title">@item.Title</p>
+                    <p class="card-price">U$S @item.Price .-</p>
+                </button>
+            }
+        </div>
+
+    </div>
+
+</div>

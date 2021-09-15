@@ -1,0 +1,138 @@
+﻿@model MasVidaWebMVC.Models.LoginModel
+@{
+    ViewBag.Title = "Log in";
+}
+    <style>
+        .validation-summary-errors
+        {
+            text-align: center;
+            margin-top: -20px;
+        }
+        .validation-summary-errors ul
+        {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+    </style>
+ <header>
+        <div class="header-content">
+        <div class="container">
+          
+  
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 login">
+              <div class="well">
+                <div class="row">
+                  <div class="col-sm-3"></div>
+                       @using (Html.BeginForm())
+                       {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                  <div class="col-sm-6">
+     
+                    <div class="row">
+                      <div class="col-md-1"></div>
+                      <div class="col-md-9" style="text-align:center; padding:0 20px;"><img src="@Url.Content("~/img/logo-masvida.png")" class="img-responsive" style="margin:auto" alt="masvida"></div>
+                      <div class="col-md-1"></div>
+                    </div>
+   }
+                    <div class="input-group">
+                      <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                      <input id="UserName" name="UserName" type="text" class="form-control" placeholder="Usuario">
+                    </div>
+                    <div class="input-group" style="margin-top: 5px;">
+                      <div class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>
+                      <input id="Password" name="Password"  type="password" class="form-control"placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">INGRESAR</button>
+                  </div><!-- /.col-sm-8 -->
+                       }
+                  <div class="col-sm-3"></div>
+                </div><!-- /.row -->
+             
+                <div class="row">
+                  <div class="col-md-1"></div>
+                   <div class="col-md-10">
+                                <!-- MENSAJE DE ERROR LOGIN -->
+                                @if (ViewData.ModelState.Any((x => x.Value.Errors.Any())))
+                                   { 
+                                <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 10px;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <strong style="visibility: hidden;"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Error!</strong>
+                                    @Html.ValidationSummary(true, "Usuario y/o contraseña incorrectos")
+                                </div>
+                                 } 
+                                <!-- /MENSAJE DE ERROR LOGIN -->
+                            </div>
+                            <!-- /.col-md-10 -->
+                  <div class="col-md-1"></div>
+                </div><!-- /.row -->
+       
+                <div class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-10 tex_info">
+                    <p><strong>Lorem ipsum dolor sit amet</strong> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  </div>
+                  <div class="col-md-1"></div>
+                </div><!-- /.row -->
+  
+              </div><!-- /.well -->
+              
+            </div><!-- /.conenido_home -->
+            <div class="col-md-3"></div>
+          </div><!-- /.row -->
+        </div><!-- /.container -->
+        </div><!-- /.header-content -->
+    </header>
+@* <header>
+   <div class="header-content">
+        <div class="header-content-inner">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+            </hgroup>
+            <section id="loginForm">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.UserName)
+                                @Html.TextBoxFor(m => m.UserName)
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.Password)
+                                @Html.PasswordFor(m => m.Password)
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="Ingresar" />
+                            </td>
+
+                        </tr>
+
+                    </table>
+                }
+            </section>
+        </div>
+    </div>
+</header>*@
+@section Scripts {
+   @* @Scripts.Render("~/bundles/jqueryval")*@
+   <script>
+    $(document).ready(function () {
+        navigatorMenu('Login');
+    });
+</script>
+}

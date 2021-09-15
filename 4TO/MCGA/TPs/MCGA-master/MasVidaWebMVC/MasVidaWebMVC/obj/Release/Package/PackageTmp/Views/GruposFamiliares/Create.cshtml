@@ -1,0 +1,31 @@
+﻿@model MasVidaWebMVC.FamilyGroup
+
+@{
+    ViewBag.Title = "Grupos Familiares";
+}
+
+<h2>Crear</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Grupo Familiar</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FamilyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FamilyName)
+            @Html.ValidationMessageFor(model => model.FamilyName)
+        </div>
+
+        <p>
+            <input type="submit" value="Crear" class="btn btn-success" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>

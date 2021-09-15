@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="084b578c1b804086ad33b7aa42f328a6" Name="Diagram1">
+        <EntityTypeShape EntityType="ModelMedicure.TipoDia" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelMedicure.EstadoCivil" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelMedicure.TipoCancelacion" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelMedicure.TipoDocumento" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelMedicure.TipoEspecialidad" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ModelMedicure.TipoReseva" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelMedicure.TipoSexo" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ModelMedicure.Atencion" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ModelMedicure.Especialidad" Width="1.5" PointX="7" PointY="3.5" />
+        <EntityTypeShape EntityType="ModelMedicure.Plan" Width="1.5" PointX="5.375" PointY="6.75" />
+        <AssociationConnector Association="ModelMedicure.FK__Especiali__TipoE__787EE5A0" />
+        <EntityTypeShape EntityType="ModelMedicure.Afiliado" Width="1.5" PointX="9.625" PointY="2.25" />
+        <EntityTypeShape EntityType="ModelMedicure.Agenda" Width="1.5" PointX="14.875" PointY="9.375" />
+        <EntityTypeShape EntityType="ModelMedicure.AgendaCancelacion" Width="1.5" PointX="17.125" PointY="10.125" />
+        <EntityTypeShape EntityType="ModelMedicure.Bono" Width="1.5" PointX="14.875" PointY="5" />
+        <EntityTypeShape EntityType="ModelMedicure.Cancelacion" Width="1.5" PointX="14.125" PointY="1" />
+        <EntityTypeShape EntityType="ModelMedicure.EspecialidadesProfesional" Width="1.5" PointX="9.625" PointY="13" />
+        <EntityTypeShape EntityType="ModelMedicure.Profesional" Width="1.5" PointX="7.375" PointY="12.125" />
+        <EntityTypeShape EntityType="ModelMedicure.Turno" Width="1.5" PointX="11.875" PointY="3.375" />
+        <EntityTypeShape EntityType="ModelMedicure.HistorialAfiliado" Width="1.5" PointX="11.875" PointY="8.875" />
+        <AssociationConnector Association="ModelMedicure.FK__Afiliados__estad__5535A963" />
+        <AssociationConnector Association="ModelMedicure.FK__Afiliados__plan___5629CD9C" />
+        <AssociationConnector Association="ModelMedicure.FK__Bonos__afiliado___59FA5E80" />
+        <AssociationConnector Association="ModelMedicure.FK__Historial__afili__74AE54BC" />
+        <AssociationConnector Association="ModelMedicure.FK__Turnos__afiliado__797309D9" />
+        <AssociationConnector Association="ModelMedicure.FK_Afiliado_TipoDocumento" />
+        <AssociationConnector Association="ModelMedicure.FK_Afiliado_TipoSexo" />
+        <AssociationConnector Association="ModelMedicure.FK_Agenda_EspecialidadesProfesional" />
+        <AssociationConnector Association="ModelMedicure.FK_Agenda_TipoDia" />
+        <AssociationConnector Association="ModelMedicure.FK_AgendaCancelacion_Agenda" />
+        <AssociationConnector Association="ModelMedicure.FK__Atencione__turno__6B24EA82" />
+        <AssociationConnector Association="ModelMedicure.FK__Bono__plan_id__74AE54BC" />
+        <AssociationConnector Association="ModelMedicure.FK__Cancelaci__tipo___76969D2E" />
+        <AssociationConnector Association="ModelMedicure.FK__Cancelaci__turno__6EF57B66" />
+        <AssociationConnector Association="ModelMedicure.FK_EspecialidadesProfesional_Especialidad" />
+        <AssociationConnector Association="ModelMedicure.FK__Especiali__profe__5FB337D6" />
+        <AssociationConnector Association="ModelMedicure.FK_Turnos_EspecialidadesProfesional" />
+        <AssociationConnector Association="ModelMedicure.FK__Historial__plan___75A278F5" />
+        <AssociationConnector Association="ModelMedicure.FK_Profesional_TipoDocumento" />
+        <AssociationConnector Association="ModelMedicure.FK_Turno_TipoReserva" />
+        <EntityTypeShape EntityType="ModelMedicure.TipoKey" Width="1.5" PointX="0.75" PointY="14" />
+        <EntityTypeShape EntityType="ModelMedicure.TipoCampo" Width="1.5" PointX="14.375" PointY="14.875" />
+        <EntityTypeShape EntityType="ModelMedicure.DetalleTipoKey" Width="1.5" PointX="16.625" PointY="15.25" />
+        <AssociationConnector Association="ModelMedicure.FK_DETALLETIPOKEY_TIPOCAMPO" />
+        <AssociationConnector Association="ModelMedicure.FK_DETALLETIPOKEY_TIPOKEY" />
+        <EntityTypeShape EntityType="ModelMedicure.DatoAdicionalAfiliado" Width="1.5" PointX="11.875" PointY="12.875" />
+        <AssociationConnector Association="ModelMedicure.FK_DATOADICIONALAFILIADO_AFILIADO" />
+        <AssociationConnector Association="ModelMedicure.FK_DATOADICIONALAFILIADO_TIPOKEY" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,53 @@
+﻿@using ArtMarket.Entities.Model
+@model IList<ArtMarket.Entities.Model.User>
+@{
+    ViewBag.Title = "Índice";
+}
+
+<div class="product-list">
+    <a href="/User/Create">
+        <button class="btn btn-primary">Agregar Usuario</button>
+    </a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Ciudad</th>
+            <th>País</th>
+            <th>Fecha de registro</th>
+            <!--<th>Cantidad de pedidos</th>-->
+            <th style="text-align:center" colspan="2">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        @foreach (User user in Model)
+        {
+            <tr>
+                <td> @user.FirstName</td>
+                <td> @user.LastName</td>
+                <td> @user.Email</td>
+                <td> @user.City</td>
+                <td> @user.Country </td>
+                <td> @user.SignUpDate </td>
+                <!--<td> @user.OrderCount </td>-->
+                <td style="text-align: center">
+                    <a href="/User/Modify/@user.Id">
+                        <img class="icon" src="~/Content/img/icons/edit.png" />
+                    </a>
+                    <!--@Html.ActionLink("Modificar", "Modify", "User", new { id = user.Id }, null)-->
+                </td>
+                <td>
+                    <a href="/User/Delete/@user.Id">
+                        <img class="icon" src="~/Content/img/icons/trash.png" />
+                    </a>
+                    <!--@Html.ActionLink("Eliminar", "Delete", "User", new { id = user.Id }, null)-->
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

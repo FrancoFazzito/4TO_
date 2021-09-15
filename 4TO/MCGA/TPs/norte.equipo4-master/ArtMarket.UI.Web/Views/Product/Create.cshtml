@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Cargar producto";
+}
+<div class="productpanel">
+    <form method="post" action="/Product/Nuevo" enctype="multipart/form-data">
+        <h2 style="padding-bottom: 10px">Cargar producto</h2>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" id="title" name="title" value="" placeholder="">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="description">Descripción</label>
+                <input type="text" class="form-control" id="description" name="description" value="" placeholder="">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="artistId">Artista</label>
+                @Html.DropDownList("ArtistId", ViewBag.ArtistList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+            <div class="form-group col-md-6">
+                <label for="quantitySold">Cantidad vendida</label>
+                <input type="number" class="form-control" id="quantitySold" name="quantitySold" min="0" max="1000" value="0">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="avgStars">Calificación promedio (entre 1 y 5)</label>
+                <input type="number" class="form-control stars" id="avgStars" name="avgStars" min="1" max="5" step="0.25" value="3">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="price">Precio ($)</label>
+                <input type="number" class="form-control" id="price" name="price" min="10" max="1000" step="10" value="10">
+            </div>
+        </div>
+        <div style="padding-bottom: 50px" class="form-row">
+            <div class="form-control">
+                <label for="image">Imagen</label>
+                <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+    </form>
+</div>

@@ -1,0 +1,55 @@
+﻿@model MasVidaWebMVC.Product
+
+@{
+    ViewBag.Title = "Productos";
+}
+
+<h2>Crear</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Producto</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductName)
+            @Html.ValidationMessageFor(model => model.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductDescription)
+            @Html.ValidationMessageFor(model => model.ProductDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductPrice)
+            @Html.ValidationMessageFor(model => model.ProductPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <p>
+            <input type="submit" value="Crear" class="btn btn-success" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Volver", "Index")
+</div>

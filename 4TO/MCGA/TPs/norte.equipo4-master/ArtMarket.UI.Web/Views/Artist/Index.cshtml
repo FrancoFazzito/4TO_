@@ -1,0 +1,53 @@
+﻿@using ArtMarket.Entities.Model
+@model IList<ArtMarket.Entities.Model.Artist>
+@{
+    ViewBag.Title = "Índice";
+}
+
+<!--<h2>Index</h2>-->
+
+<div class="product-list">
+    <a href="/Artist/Create">
+        <button class="btn btn-primary">Agregar Artista</button>
+    </a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Años</th>
+            <th>País</th>
+            <th>Descripción</th>
+            <th>Cantidad de cuadros</th>
+            <th style="text-align:center" colspan="2">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        @foreach (Artist artist in Model)
+        {
+    <tr>
+        <td> @artist.FirstName</td>
+        <td> @artist.LastName</td>
+        <td> @artist.LifeSpan</td>
+        <td> @artist.Country</td>
+        <td> @artist.Description</td>
+        <td> @artist.TotalProducts</td>
+        <td>
+            <a href="/Artist/Modify/@artist.Id">
+                <img src="~/Content/img/icons/edit.png" />
+            </a>
+            <!--@Html.ActionLink("Modificar", "Modify", "Product", new { id = artist.Id }, null)-->
+        </td>
+        <td>
+            <a href="/Artist/Delete/@artist.Id">
+                <img src="~/Content/img/icons/trash.png" />
+            </a>
+            <!--@Html.ActionLink("Eliminar", "Delete", "Product", new { id = artist.Id }, null)-->
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>

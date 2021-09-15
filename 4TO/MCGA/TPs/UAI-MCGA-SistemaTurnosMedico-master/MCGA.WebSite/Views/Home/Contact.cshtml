@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Contacto";
+    ViewBag.Description = "En esta página vamos a poder ver la información de como contactarse con la empresa.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(HomeControllerRoute.GetContact)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<div class="row inicio">
+    <div class="col-lg-12 col-md-12 col-sm-12 text-justify">
+        <h2>@ViewBag.Title</h2>
+        <p>
+            Nuestra misión es mejorar la calidad de vida de las personas de la comunidad a la que servimos mediante la atención médica basada en la evidencia científica, con tecnología de vanguardia y contenido ético, en un ambiente humanizado.
+        </p>
+        <p>
+            Queremos ser reconocidos como líderes, innovadores y respetuosos de la dignidad de la persona en la atención médica y del cuidado del paciente.
+        </p>
+        <p>
+            <span class="font-weight-bold">Clinica Alejandria, </span>
+            cuenta con una sola sede central, a continuación dejamos los datos para que pueda encontrarnos y contactarse con nosotros.
+        </p>
+        <p class="font-weight-bold mb-1">
+            SEDE CENTRAL
+        </p>
+        <p class="font-weight-light mb-1">
+            Av. 9 de Julio 2409, CABA, Provincia de Bs. As.
+        </p>
+        <p class="font-weight-bold fontTamanio20 mb-1">
+            (011) 15 66234589
+        </p>
+        <p class="fontTamanio20"><a href="mailto:atencion.clientes@clinicalejandria.com.ar" title="atencion.clientes@clinicalejandria.com.ar">Nuestro correo electrónico</a></p>
+    </div>
+</div>

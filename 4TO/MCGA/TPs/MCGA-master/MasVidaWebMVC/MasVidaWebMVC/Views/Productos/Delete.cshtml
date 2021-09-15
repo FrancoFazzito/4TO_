@@ -1,0 +1,46 @@
+﻿@model MasVidaWebMVC.Product
+
+@{
+    ViewBag.Title = "Productos";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Producto</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductPrice)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        @Html.ActionLink("Volver", "Index")
+    </p>
+}

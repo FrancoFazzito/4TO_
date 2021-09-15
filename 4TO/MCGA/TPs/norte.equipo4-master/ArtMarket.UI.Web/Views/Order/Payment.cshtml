@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+}
+
+@model ArtMarket.Entities.Model.Order
+
+  <div class="order-form">
+    <form action="Checkout" method="post">
+      <h2>Realización del pago</h2>
+
+      <div>
+        <label for="number">Datos de la tarjeta</label>
+        <br />      
+        <!--<br />
+        <label for="number">Card</label>
+        <br />
+          -->
+        <input name="number" required type="text" placeholder="0000 0000 0000 0000" class="input-text card-number" />
+
+        <!--
+        <br />
+        <label for="name">Nombre Completo</label>
+        -->
+        <br />
+        <input name="name" required type="text" placeholder="NOMBRE APELLIDO" class="input-text card-name" />
+
+        <br />
+
+        <div>
+          <label for="date">Expiración</label>
+          <br />
+          <input name="date" required type="text" placeholder="00" class="input-text" />
+          /
+          <input name="date" required type="text" placeholder="00" class="input-text" />
+        </div>
+
+        <div>
+          <label for="code">Code</label>
+          <br />
+          <input name="code" required type="text" placeholder="---" class="input-text" />
+          <img src="~/Content/Images/credit-card.icon.png" class="credit-card-icon"/>
+        </div>
+      </div>
+      <br />
+      <input name="submit" required type="submit" value="Submit" class="button-principal" />
+    </form>
+  </div>

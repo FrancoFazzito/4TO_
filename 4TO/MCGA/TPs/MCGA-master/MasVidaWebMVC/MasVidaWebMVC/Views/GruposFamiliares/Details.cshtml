@@ -1,0 +1,22 @@
+﻿@model MasVidaWebMVC.FamilyGroup
+
+@{
+    ViewBag.Title = "Grupos Familiares";
+}
+
+<h2>Detalles</h2>
+
+<fieldset>
+    <legend>Grupo Familiar</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FamilyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FamilyName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.FamilyGroupID }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

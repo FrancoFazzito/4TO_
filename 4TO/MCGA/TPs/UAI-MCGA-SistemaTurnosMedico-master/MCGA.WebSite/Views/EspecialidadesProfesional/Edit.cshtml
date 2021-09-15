@@ -1,0 +1,128 @@
+﻿@model MCGA.Entities.EspecialidadesProfesional
+@{
+    ViewBag.Title = "Especialidades de profesional";
+    ViewBag.Description = "En esta página vamos a poder editar especialidades de profesionales del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(EspecialidadesProfesionalControllerRoute.GetEdit)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<h2>Editar <small>especialidades profesional</small> </h2>
+<hr class="hrSinMarginTop" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal content-personalizado">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EspecialidadId, "Especialidad", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("BuscarEspecialidad", (String)ViewBag.EspecialidadTexto,
+                   new
+                   {
+                       @class = "form-control",
+                       autocomplete = "off",
+                       placeholder = "Ingrese la especialidad",
+                   })
+            @Html.ValidationMessageFor(model => model.EspecialidadId, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.EspecialidadId)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProfesionalId, "Profesional", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("BuscarProfesional", (String)ViewBag.ProfesionalTexto,
+                   new
+                   {
+                       @class = "form-control",
+                       autocomplete = "off",
+                       placeholder = "Ingrese el profesional",
+                   })
+            @Html.ValidationMessageFor(model => model.ProfesionalId, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ProfesionalId)
+        </div>
+    </div>
+
+    <div class="form-group text-right paddingLeftRight_15">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-check-circle"></i>
+            Guardar
+        </button>
+    </div>
+</div>
+}
+
+<div>
+    <a class="btn btn-sm" href="@Url.Action("Index", "EspecialidadesProfesional")">
+        <i class="fa fa-chevron-circle-left"></i>
+        Volver al listado
+    </a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#BuscarEspecialidad").autocomplete({
+            autoSelect: true,
+            autoFocus: true,
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetEspecialidad", "Especialidad")',
+                    datatype: "json",
+                    data: { Areas: '', term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return { label: val.Name, value: val.Name, Id: val.Id };
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#EspecialidadId").val(ui.item.Id);
+
+            }
+        });
+
+        $("#BuscarProfesional").autocomplete({
+            autoSelect: true,
+            autoFocus: true,
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetProfesional", "Profesional")',
+                    datatype: "json",
+                    data: { Areas: '', term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return { label: val.Name, value: val.Name, Id: val.Id };
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#ProfesionalId").val(ui.item.Id);
+
+            }
+        });
+    </script>
+}

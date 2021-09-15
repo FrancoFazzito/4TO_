@@ -1,0 +1,58 @@
+﻿@model MCGA.Entities.EstadoCivil
+@{
+    ViewBag.Title = "Estado civil";
+    ViewBag.Description = "En esta página vamos a poder agregar estados civiles del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(EstadoCivilControllerRoute.GetCreate)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+<h2>Nuevo <small>estado civil</small> </h2>
+<hr class="hrSinMarginTop" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal content-personalizado">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group text-right paddingLeftRight_15">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-check-circle"></i>
+            Guardar
+        </button>
+    </div>
+</div>
+}
+
+<div>
+    <a class="btn btn-sm" href="@Url.Action("Index", "EstadoCivil")">
+        <i class="fa fa-chevron-circle-left"></i>
+        Volver al listado
+    </a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

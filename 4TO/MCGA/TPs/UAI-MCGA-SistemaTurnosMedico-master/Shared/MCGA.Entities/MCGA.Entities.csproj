@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9CC9E395-4E72-47FC-9F03-C1CA9E69261D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MCGA.Entities</RootNamespace>
+    <AssemblyName>MCGA.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Afiliado.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Agenda.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AgendaCancelacion.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Atencion.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bono.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cancelacion.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatoAdicionalAfiliado.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleTipoKey.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Especialidad.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EspecialidadesProfesional.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstadoCivil.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialAfiliado.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Metadata\AfiliadoMetadata.cs" />
+    <Compile Include="Metadata\AgendaMetadata.cs" />
+    <Compile Include="Metadata\EspecialidadesProfesionalMetadata.cs" />
+    <Compile Include="Metadata\EspecialidadMetadata.cs" />
+    <Compile Include="Metadata\EstadoCivilMetadata.cs" />
+    <Compile Include="Metadata\PlanMetadata.cs" />
+    <Compile Include="Metadata\ProfesionalMetadata.cs" />
+    <Compile Include="Metadata\TipoCancelacionMetadata.cs" />
+    <Compile Include="Metadata\TipoDiaMetadata.cs" />
+    <Compile Include="Metadata\TipoDocumentoMetadata.cs" />
+    <Compile Include="Metadata\TipoEspecialidadMetadata.cs" />
+    <Compile Include="Metadata\TipoResevaMetadata.cs" />
+    <Compile Include="Metadata\TipoSexoMetadata.cs" />
+    <Compile Include="Metadata\TurnoMetadata.cs" />
+    <Compile Include="ModelMedicure.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Plan.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profesional.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoCampo.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoCancelacion.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoDia.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoDocumento.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoEspecialidad.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoKey.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoReseva.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoSexo.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Turno.cs">
+      <DependentUpon>ModelMedicure.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelMedicure.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelMedicure.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

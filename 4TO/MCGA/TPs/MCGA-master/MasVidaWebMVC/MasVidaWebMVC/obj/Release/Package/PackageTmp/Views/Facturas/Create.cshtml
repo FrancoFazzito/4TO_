@@ -1,0 +1,91 @@
+﻿@model MasVidaWebMVC.Transaction
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Transaction</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductName)
+            @Html.ValidationMessageFor(model => model.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductPrice)
+            @Html.ValidationMessageFor(model => model.ProductPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionCreationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionCreationDate)
+            @Html.ValidationMessageFor(model => model.TransactionCreationDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionPaymentDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TransactionPaymentDate)
+            @Html.ValidationMessageFor(model => model.TransactionPaymentDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsPaid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsPaid)
+            @Html.ValidationMessageFor(model => model.IsPaid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionTypeID, "TransactionType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TransactionTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.TransactionTypeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductID, "Product")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProductID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ProductID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserID, "Users")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UserID", String.Empty)
+            @Html.ValidationMessageFor(model => model.UserID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

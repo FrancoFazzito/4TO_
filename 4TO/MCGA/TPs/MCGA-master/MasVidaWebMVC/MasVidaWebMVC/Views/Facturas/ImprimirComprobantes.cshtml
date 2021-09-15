@@ -1,0 +1,178 @@
+﻿@model IEnumerable<MasVidaWebMVC.User>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Imprimir Comprobantes</title>
+
+    <style type="text/css">
+        body {
+            padding: 0;
+        }
+
+        #contenedor {
+            max-width: 1200px;
+            min-width: 500px;
+            margin: auto;
+        }
+
+        th, td {
+            padding: 2px 8px;
+            border: 1px solid black;
+        }
+
+        .col_inter th, .col_inter td {
+            border: 0;
+        }
+
+        table {
+            text-align: left;
+            width: 100%;
+            /*border-collapse: collapse;*/
+            border-collapse: separate;
+            border-spacing: 2px 0px;
+        }
+
+        th {
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 100;
+        }
+
+        hr {
+            margin: 3px 0;
+        }
+
+        img {
+            margin: 3px 0;
+        }
+
+        .ellipsis {
+            text-overflow: ellipsis;
+            /* Required for text-overflow to do anything */
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+
+        @foreach (var item in Model)
+        {
+            if(item.Transactions.Last().TransactionCreationDate.Month == ViewBag.MonthInt){
+                
+<table width="100%" style="margin-bottom: 19px;">
+                <tr>
+                    <th width="30%">
+                         <img src="~/img/logo-masvida-small.png" />
+                    </th>
+                    <th width="70%" style="padding-left: 3%;">
+                         <img src="~/img/logo-masvida-small.png" />
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <th width="30%" rowspan="2" valign="top">
+                        <table width="100%" class="col_inter">
+                            <tr>
+                                <td>@ViewBag.Month - @DateTime.Now.ToString("dd/MM/yy")</td>
+                            </tr>
+                            <tr>
+                                <td>COMPROBANTE N&#186;: <strong>@item.Transactions.Last().TransactionID</strong></td>
+                            </tr>
+                        </table>
+                        <table width="100%" height="90" class="col_inter">
+                            <tr>
+                                <td valign="top">
+                                    <hr />
+                                    <strong>• @item.Name @item.LastName</strong>
+                                    <hr />
+                                    Saldo: <strong>$@item.AccountTotal</strong>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>@item.Transactions.Last().ProductName: <strong>$@item.Transactions.Last().ProductPrice</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Direcci&oacute;n: @item.Address</td>
+                            </tr>
+                        </table>
+                       @* <table width="100%" class="col_inter">
+                            <tr>
+                                <td>@item.Transactions.Last().ProductName: <strong>$@item.Transactions.Last().ProductPrice</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Direcci&oacute;n: @item.Address</td>
+                            </tr>
+                        </table>*@
+                </th>
+
+
+
+
+
+                    <th width="70%" style="padding-left: 3%; padding-right: 3%;">
+                        <table width="100%" class="col_inter">
+                            <tr>
+                                <td width="50%">COMPROBANTE N&#186;: <strong>@item.Transactions.Last().TransactionID</strong></td>
+                                <td width="50%" align="right">MES @ViewBag.Month - @DateTime.Now.ToString("dd/MM/yy")</td>
+                            </tr>
+                        </table>
+                        <table width="100%" class="col_inter">
+                            <tr>
+                                <td height="80" valign="top">
+                                     <hr />
+                                    <strong>• @item.Name @item.LastName</strong>
+                                    <hr />
+                                    @if (item.FamiliesGroup != null)
+                                    {
+                                        if (item.FamiliesGroup.Users.Count > 5)
+                                        {
+<span>@item.FamiliesGroup.FamilyName...</span>
+                                        }
+                                        else
+                                        {
+                                            foreach (var u in item.FamiliesGroup.Users)
+                                            {
+<span>@u.Name @u.LastName, </span>
+                                            }
+                                        }
+                                        
+                                    }
+                </tr>
+                        </table>
+                        <table width="100%" class="col_inter">
+                          @*  <tr>
+                                <td width="20%"</td>
+                                <td width="80%"></td>
+                            </tr>*@
+                <tr>
+                                <td>@item.Transactions.Last().ProductName: <strong>$@item.Transactions.Last().ProductPrice</strong> - Saldo: <strong>$@item.AccountTotal</td>
+                            </tr>
+                            <tr>
+                                <td>Direcci&oacute;n: @item.Address</td>
+                            </tr>
+                        </table>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th width="70%" align="center" style="font-size: 11px;">MARIA S. PEREYRA 591 - ACEBAL - SANTA FE - TEL. (03469) 156-90110 / 15690121 - (03469) 420553/420274 
+                    </th>
+                </tr>
+            </table>
+            }
+        }
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Inicio" controller="Home" action="Index">
+    <mvcSiteMapNode title="¿Quiénes somos?" controller="Home" action="About"/>
+    <mvcSiteMapNode title="Contacto" controller="Home" action="Contact"/>
+    <mvcSiteMapNode title="Registrarse" controller="Account" action="Register"/>
+    <mvcSiteMapNode title="Iniciar sesión" controller="Account" action="Login"/>
+  
+  <mvcSiteMapNode title="Estado civil" controller="EstadoCivil" action="Index">
+    <mvcSiteMapNode title="Agregar" controller="EstadoCivil" action="Create"/>
+    <mvcSiteMapNode title="Editar" controller="EstadoCivil" action="Edit"/>
+    <mvcSiteMapNode title="Eliminar" controller="EstadoCivil" action="Delete"/>
+  </mvcSiteMapNode>
+    
+  <mvcSiteMapNode title="Tipo de cancelación" controller="TipoCancelacion" action="Index">
+    <mvcSiteMapNode title="Agregar" controller="TipoCancelacion" action="Create"/>
+    <mvcSiteMapNode title="Editar" controller="TipoCancelacion" action="Edit"/>
+    <mvcSiteMapNode title="Eliminar" controller="TipoCancelacion" action="Delete"/>
+  </mvcSiteMapNode>  
+    
+  <mvcSiteMapNode title="Tipo de día" controller="TipoDia" action="Index">
+    <mvcSiteMapNode title="Agregar" controller="TipoDia" action="Create"/>
+    <mvcSiteMapNode title="Editar" controller="TipoDia" action="Edit"/>
+    <mvcSiteMapNode title="Eliminar" controller="TipoDia" action="Delete"/>
+  </mvcSiteMapNode>   
+    
+  <mvcSiteMapNode title="Tipo de documento" controller="TipoDocumento" action="Index">
+    <mvcSiteMapNode title="Agregar" controller="TipoDocumento" action="Create"/>
+    <mvcSiteMapNode title="Editar" controller="TipoDocumento" action="Edit"/>
+    <mvcSiteMapNode title="Eliminar" controller="TipoDocumento" action="Delete"/>
+  </mvcSiteMapNode>   
+    
+  <mvcSiteMapNode title="Tipo de especialidad" controller="TipoEspecialidad" action="Index">
+    <mvcSiteMapNode title="Agregar" controller="TipoEspecialidad" action="Create"/>
+    <mvcSiteMapNode title="Editar" controller="TipoEspecialidad" action="Edit"/>
+    <mvcSiteMapNode title="Eliminar" controller="TipoEspecialidad" action="Delete"/>
+  </mvcSiteMapNode>   
+    
+  <mvcSiteMapNode title="Tipo de reserva" controller="TipoReseva" action="Index">
+    <mvcSiteMapNode title="Agregar" controller="TipoReseva" action="Create"/>
+    <mvcSiteMapNode title="Editar" controller="TipoReseva" action="Edit"/>
+    <mvcSiteMapNode title="Eliminar" controller="TipoReseva" action="Delete"/>
+  </mvcSiteMapNode>   
+    
+  <mvcSiteMapNode title="Tipo de sexo" controller="TipoSexo" action="Index">
+    <mvcSiteMapNode title="Agregar" controller="TipoSexo" action="Create"/>
+    <mvcSiteMapNode title="Editar" controller="TipoSexo" action="Edit"/>
+    <mvcSiteMapNode title="Eliminar" controller="TipoSexo" action="Delete"/>
+  </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Especialidad" controller="Especialidad" action="Index">
+      <mvcSiteMapNode title="Agregar" controller="Especialidad" action="Create"/>
+      <mvcSiteMapNode title="Editar" controller="Especialidad" action="Edit"/>
+      <mvcSiteMapNode title="Eliminar" controller="Especialidad" action="Delete"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Plan" controller="Plan" action="Index">
+      <mvcSiteMapNode title="Agregar" controller="Plan" action="Create"/>
+      <mvcSiteMapNode title="Editar" controller="Plan" action="Edit"/>
+      <mvcSiteMapNode title="Eliminar" controller="Plan" action="Delete"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Profesional" controller="Profesional" action="Index">
+      <mvcSiteMapNode title="Agregar" controller="Profesional" action="Create"/>
+      <mvcSiteMapNode title="Editar" controller="Profesional" action="Edit"/>
+      <mvcSiteMapNode title="Eliminar" controller="Profesional" action="Delete"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Especialidades de profesional" controller="EspecialidadesProfesional" action="Index">
+      <mvcSiteMapNode title="Agregar" controller="EspecialidadesProfesional" action="Create"/>
+      <mvcSiteMapNode title="Editar" controller="EspecialidadesProfesional" action="Edit"/>
+      <mvcSiteMapNode title="Eliminar" controller="EspecialidadesProfesional" action="Delete"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Agenda" controller="Agenda" action="Index">
+      <mvcSiteMapNode title="Agregar" controller="Agenda" action="Create"/>
+      <mvcSiteMapNode title="Editar" controller="Agenda" action="Edit"/>
+      <mvcSiteMapNode title="Eliminar" controller="Agenda" action="Delete"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Afiliado" controller="Afiliado" action="Index">
+      <mvcSiteMapNode title="Agregar" controller="Afiliado" action="Create"/>
+      <mvcSiteMapNode title="Editar" controller="Afiliado" action="Edit"/>
+      <mvcSiteMapNode title="Eliminar" controller="Afiliado" action="Delete"/>
+      <mvcSiteMapNode title="Dato adicional" controller="DatoAdicionalAfiliado" action="Create"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Turno" controller="Turno" action="Index">
+      <mvcSiteMapNode title="Agregar" controller="Turno" action="Create"/>
+      <mvcSiteMapNode title="Editar" controller="Turno" action="Edit"/>
+      <mvcSiteMapNode title="Eliminar" controller="Turno" action="Delete"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Atención de paciente" controller="Atencion" action="List">
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Calendario profesional" controller="CalendarioProfesional" action="Calendario">
+    </mvcSiteMapNode>
+    
+  </mvcSiteMapNode>
+
+  
+
+</mvcSiteMap>

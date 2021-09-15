@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "¿Quiénes somos? Contamos con el mejor servicio";
+    ViewBag.Description = "En esta página vamos a poder ver la información sobre la empresa.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(HomeControllerRoute.GetAbout)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<div class="row inicio">
+    <div class="col-lg-12 col-md-12 col-sm-12 text-justify">
+        <h2>@ViewBag.Title</h2>
+        <p>
+            <span class="font-weight-bold">Clinica Alejandria, </span>
+            es una institución privada especializada en servicios de cuidado y atencion en maternidad y patologías clínico-quirúrgicas prevalentes.
+        </p>
+        <p>Ofrecemos distintos servicios, consultas generales, estudios, con equipos de última tecnología especializados para obtener un mejor diagnostico para nuestros pacientes.</p>
+        <p>Muchas mujeres pueden presentar complicaciones durante el embarazo, por ejemplo:</p>
+        <ul>
+            <li>Hiperemesis gravídica</li>
+            <li>Amenaza de Aborto</li>
+            <li>Amenaza de Parto Pretérmino</li>
+            <li>Rotura Prematura de Membranas (hasta semana 34)</li>
+            <li>Metrorragias de la segunda mitad</li>
+            <li>Hipertensión Inducida por el embarazo</li>
+            <li>Preeclampsia</li>
+            <li>HTA previa</li>
+            <li>Intercurrencias clínicas asociadas al embarazo</li>
+            <li>Embarazo Múltiple</li>
+            <li>Diabetes gestacional</li>
+        </ul>
+        <p>Para atender dicha demanda contamos con un servicio en el seguimiento de dichas patologías: la Unidad de Atención de embarazo de Alto Riesgo, ya sea para brindad atención directa a las pacientes o para guiar al obstetra de cabecera en la toma de decisiones, trabajando interdisciplinariamente con neonatología.</p>
+        <p>
+            El manejo del embarazo de Alto Riesgo es un área especializada en cuidados ambulatorios y posibilita una evaluación integral exhaustiva, en el mínimo tiempo posible de la mujer, el estado de su embarazo, patología, y el bienestar fetal.
+        </p>
+        <p>
+            Esta modalidad atención evita internaciones innecesarias, facilita la permanencia de las mujeres con sus familias y minimiza el malestar vinculado a la separación de la mujer de su entorno más cercano.
+        </p>
+        <p>
+            Queremos que la paciente concurra en forma programada, se realice los estudios complementarios, reciba educación sobre la patología y se retire con la evaluación completa.
+        </p>
+        <p>
+            Creemos que es posible mejorar la calidad de vida de la paciente con embarazo de alto riesgo.
+        </p>
+    </div>
+</div>

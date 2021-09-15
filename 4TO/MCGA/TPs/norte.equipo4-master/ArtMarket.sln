@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3E8AA9FE-B03D-42B9-86FF-06E7620E8580}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.Services.Contracts", "ArtMarket.Services.Contracts\ArtMarket.Services.Contracts.csproj", "{36E54478-580A-44C7-BFA1-8C8CDCF29B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.Services.Http", "ArtMarket.Services.Http\ArtMarket.Services.Http.csproj", "{92B0ED92-6C01-49FB-A89A-5CB229AF2794}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{D8A68055-5BC1-4E9B-B57E-496752BD0FB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.Hosts.Web", "ArtMarket.Hosts.Web\ArtMarket.Hosts.Web.csproj", "{FB308432-14C0-4A71-9B50-40DA2D6B5641}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{46265C1E-DA48-435C-97B2-21D5D592F3F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.UI.Web", "ArtMarket.UI.Web\ArtMarket.UI.Web.csproj", "{281D895F-BC23-4D59-B069-5A0DD93C6E01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{C12064FB-2405-49BA-ABD6-5C56D3AC345A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.Business", "ArtMarket.Business\ArtMarket.Business.csproj", "{5B512E86-794F-4EF5-AF61-4809498A39E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{30A5AF74-B319-4E05-8742-9204EA672D7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.Entities", "ArtMarket.Entities\ArtMarket.Entities.csproj", "{B1E82DDE-2F2B-4619-9C6E-93AFD94503C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.Framework", "ArtMarket.Framework\ArtMarket.Framework.csproj", "{B0CC8A9D-A614-4657-B8A2-1BE0AAC73AE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8F1C7415-3C32-4BE1-87F0-7394F5781F31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.Data", "ArtMarket.Data\ArtMarket.Data.csproj", "{3F6937C7-3959-4181-B1FB-C87B492A1F09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtMarket.UI.Process", "ArtMarket.UI.Process\ArtMarket.UI.Process.csproj", "{43EB433F-22CF-48D5-920C-6BA621C035F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36E54478-580A-44C7-BFA1-8C8CDCF29B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E54478-580A-44C7-BFA1-8C8CDCF29B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E54478-580A-44C7-BFA1-8C8CDCF29B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E54478-580A-44C7-BFA1-8C8CDCF29B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B0ED92-6C01-49FB-A89A-5CB229AF2794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B0ED92-6C01-49FB-A89A-5CB229AF2794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B0ED92-6C01-49FB-A89A-5CB229AF2794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B0ED92-6C01-49FB-A89A-5CB229AF2794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB308432-14C0-4A71-9B50-40DA2D6B5641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB308432-14C0-4A71-9B50-40DA2D6B5641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB308432-14C0-4A71-9B50-40DA2D6B5641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB308432-14C0-4A71-9B50-40DA2D6B5641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281D895F-BC23-4D59-B069-5A0DD93C6E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281D895F-BC23-4D59-B069-5A0DD93C6E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281D895F-BC23-4D59-B069-5A0DD93C6E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281D895F-BC23-4D59-B069-5A0DD93C6E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B512E86-794F-4EF5-AF61-4809498A39E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B512E86-794F-4EF5-AF61-4809498A39E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B512E86-794F-4EF5-AF61-4809498A39E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B512E86-794F-4EF5-AF61-4809498A39E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E82DDE-2F2B-4619-9C6E-93AFD94503C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E82DDE-2F2B-4619-9C6E-93AFD94503C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E82DDE-2F2B-4619-9C6E-93AFD94503C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E82DDE-2F2B-4619-9C6E-93AFD94503C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0CC8A9D-A614-4657-B8A2-1BE0AAC73AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0CC8A9D-A614-4657-B8A2-1BE0AAC73AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0CC8A9D-A614-4657-B8A2-1BE0AAC73AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0CC8A9D-A614-4657-B8A2-1BE0AAC73AE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F6937C7-3959-4181-B1FB-C87B492A1F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F6937C7-3959-4181-B1FB-C87B492A1F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F6937C7-3959-4181-B1FB-C87B492A1F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F6937C7-3959-4181-B1FB-C87B492A1F09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EB433F-22CF-48D5-920C-6BA621C035F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EB433F-22CF-48D5-920C-6BA621C035F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EB433F-22CF-48D5-920C-6BA621C035F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EB433F-22CF-48D5-920C-6BA621C035F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36E54478-580A-44C7-BFA1-8C8CDCF29B8B} = {3E8AA9FE-B03D-42B9-86FF-06E7620E8580}
+		{92B0ED92-6C01-49FB-A89A-5CB229AF2794} = {3E8AA9FE-B03D-42B9-86FF-06E7620E8580}
+		{FB308432-14C0-4A71-9B50-40DA2D6B5641} = {D8A68055-5BC1-4E9B-B57E-496752BD0FB5}
+		{281D895F-BC23-4D59-B069-5A0DD93C6E01} = {46265C1E-DA48-435C-97B2-21D5D592F3F8}
+		{5B512E86-794F-4EF5-AF61-4809498A39E8} = {C12064FB-2405-49BA-ABD6-5C56D3AC345A}
+		{B1E82DDE-2F2B-4619-9C6E-93AFD94503C4} = {30A5AF74-B319-4E05-8742-9204EA672D7A}
+		{B0CC8A9D-A614-4657-B8A2-1BE0AAC73AE3} = {30A5AF74-B319-4E05-8742-9204EA672D7A}
+		{3F6937C7-3959-4181-B1FB-C87B492A1F09} = {8F1C7415-3C32-4BE1-87F0-7394F5781F31}
+		{43EB433F-22CF-48D5-920C-6BA621C035F9} = {46265C1E-DA48-435C-97B2-21D5D592F3F8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D1E70A4-06BF-477B-9EC1-2072E124E1D7}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal

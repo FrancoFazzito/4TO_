@@ -1,0 +1,159 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<MCGA.Entities.Turno>
+@{
+    ViewBag.Title = "Turno";
+    ViewBag.Description = "En esta página vamos a poder gestionar los turnos del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(TurnoControllerRoute.GetIndex)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+@if (User.IsInRole("Paciente"))
+{
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            <h2>
+                Mis turnos
+            </h2>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12">
+            <h2>
+                Turno
+            </h2>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="float-lg-right float-md-right float-sm-none">
+                <div class="btn-group" role="group">
+                    <a title="Agregar turno" class="btn btn-sm btn-primary" href="@Url.Action("Create", "Turno")">
+                        <i class="fa fa-plus-circle"></i>
+                        Agregar
+                    </a>
+                    <a title="Descargar a Excel" class="btn btn-sm btn-success" href="@Url.Action("ExportExcel", "Turno")">
+                        <i class="fa fa-download"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-sm table-light table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+                            @Html.Raw("Fecha")
+                        </th>
+                        <th>
+                            @Html.Raw("Hora")
+                        </th>
+                        <th>
+                            @Html.Raw("Especialidad")
+                        </th>
+                        <th>
+                            @Html.Raw("Profesional")
+                        </th>
+                        <th>
+                            @Html.Raw("Afiliado")
+                        </th>
+                        <th>
+                            @Html.Raw("Reserva")
+                        </th>
+                        <th>
+                            @Html.Raw("Observaciones")
+                        </th>
+                        @if (!User.IsInRole("Paciente"))
+                        {
+                            <th style="width:5%;"></th>
+                        }
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EspecialidadesProfesional.Especialidad.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EspecialidadesProfesional.Profesional.Nombre)
+                        @Html.DisplayFor(modelItem => item.EspecialidadesProfesional.Profesional.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Afiliado.Nombre)
+                        @Html.DisplayFor(modelItem => item.Afiliado.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoReseva.descripcion)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Observaciones)
+                    </td>
+                    @if (!User.IsInRole("Paciente"))
+                    {
+                        <td>
+                            <div class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-danger btn-sm" title="Eliminar" href="@Url.Action("Delete", "Turno", new { id = item.Id })">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<p class="text-center">
+    Página <strong>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)</strong> de <strong>@Model.PageCount</strong>
+</p>
+
+@if (ViewBag.TurnoGenerado != null)
+{
+    @Html.Partial("_TurnoRegistrado")
+}
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+
+            $('#turnoGenerado').fadeIn(1000);
+            setTimeout(function () {
+                $('#turnoGenerado').fadeOut(1000);
+            }, 5000);
+
+            $('table').stacktable();
+        });
+    </script>
+}

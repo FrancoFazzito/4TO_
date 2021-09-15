@@ -1,0 +1,89 @@
+﻿@model ASF.Entities.Cart
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cart</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cookie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cookie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rowid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rowid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChangedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChangedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangedBy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

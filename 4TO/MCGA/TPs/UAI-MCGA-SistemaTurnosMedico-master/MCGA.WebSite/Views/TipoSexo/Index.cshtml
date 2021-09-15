@@ -1,0 +1,87 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<MCGA.Entities.TipoSexo>
+@{
+    ViewBag.Title = "Tipo de sexo";
+    ViewBag.Description = "En esta página vamos a poder gestionar los tipos de sexo del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(TipoSexoControllerRoute.GetIndex)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12">
+        <h2>
+            Tipo de sexo
+        </h2>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="float-lg-right float-md-right float-sm-none">
+            <div class="btn-group" role="group">
+                <a title="Agregar tipo de sexo" class="btn btn-sm btn-primary" href="@Url.Action("Create", "TipoSexo")">
+                    <i class="fa fa-plus-circle"></i>
+                    Agregar
+                </a>
+                <a title="Descargar a Excel" class="btn btn-sm btn-success" href="@Url.Action("ExportExcel", "TipoSexo")">
+                    <i class="fa fa-download"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-sm table-light table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th style="width:90%;">
+                            @Html.Raw("Descripción")
+                        </th>
+                        <th style="width:10%;"></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descripcion)
+                        </td>
+                        <td>
+                            <div class="float-right">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-secondary btn-sm" title="Editar" href="@Url.Action("Edit", "TipoSexo",new { id = item.Id })">
+                                        <i class="fa fa-edit"></i>
+                                        Editar
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" title="Eliminar" href="@Url.Action("Delete", "TipoSexo",new { id = item.Id })">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<p class="text-center">
+    Página <strong>@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)</strong> de <strong>@Model.PageCount</strong>
+</p>

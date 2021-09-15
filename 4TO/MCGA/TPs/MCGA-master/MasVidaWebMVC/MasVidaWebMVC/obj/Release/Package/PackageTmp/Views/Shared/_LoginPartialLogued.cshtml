@@ -1,0 +1,40 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <li id="mnuClients"><a class="page-scroll" href="@Url.Content("~/Clientes/Index")">Clientes</a></li>
+    <li id="mnuProducts"><a class="page-scroll" href="@Url.Content("~/Productos/Index")">Productos</a></li>
+    <li id="mnuGroups"><a class="page-scroll" href="@Url.Content("~/Grupos/Index")">Grupos</a></li>
+    <li id="mnuTrans"><a class="page-scroll" href="@Url.Content("~/Transacciones/Index")">Transacciones</a></li>
+    
+    
+    //AdminUser Menu
+    <li id="mnuParameters"><a class="page-scroll" href="@Url.Content("~/Parametros/Index")">Parametros</a></li>
+    <li id="mnuTransType"><a class="page-scroll" href="@Url.Content("~/TiposDeTransacciones/Index")">Tipos de Trans</a></li>
+    <li id="mnuUsers"><a class="page-scroll" href="@Url.Content("~/Usuarios/Index")">Usuarios</a></li>
+    <li id="mnuUsersTypes"><a class="page-scroll" href="@Url.Content("~/TiposDeUsuarios/Index")">Tipos de Usu</a></li>
+    
+    
+
+    <li style="background-color: #EE0019; cursor: pointer;" class="dropdown"><a href="#" class="dropdown-toggle" id="menu_font" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        @User.Identity.Name
+        <b class="caret"></b></a>
+        <ul class="dropdown-menu pull-right">
+            <li>
+                <a class="page-scroll" href="@Url.Content("~/Account/LogOut")">
+                    <i class='icon-remove'></i>Salir</a> </li>
+        </ul>
+    </li>
+   
+
+}
+else
+{
+    
+
+    <li id="mnuLogin">
+        <a class="page-scroll" href="@Url.Content("~/Account/Login")" style="background-color:#EE0019;">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+    </li>
+
+
+}

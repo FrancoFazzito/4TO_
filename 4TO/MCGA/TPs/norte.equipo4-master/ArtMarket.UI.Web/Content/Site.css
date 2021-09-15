@@ -1,0 +1,624 @@
+﻿/*SOMEE INFO*/
+body > div:nth-child(n+2), body > center {
+  visibility: hidden;
+  height: 0px !important;
+}
+
+/*GENERAL*/
+@font-face {
+  font-family: Segoe UI;
+  src: local("Segoe UI"), url(../fonts/segoeui.TTF) format("truetype");
+}
+
+@font-face {
+  font-family: UniversS 45 Light;
+  src: local("UniversS 45 Light"), url(../fonts/UVSL.TTF) format("truetype");
+}
+
+@font-face {
+  font-family: MS Reference Sans Serif;
+  src: local("MS Reference Sans Serif"), url(../fonts/REFSAN.TTF) format("truetype");
+}
+
+@font-face {
+  font-family: Microsoft JhengHei;
+  src: local("Microsoft JhengHei"), url(../fonts/msjh.ttc) format("truetype");
+}
+
+@font-face {
+  font-family: Tahoma;
+  src: local("Tahoma"), url(../fonts/tahoma.ttf) format("truetype");
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+html {
+  background-image: url(Images/background.png);
+  background-position: center;
+  background-size: cover;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+nav ul {
+  list-style: unset;
+}
+
+h1 {
+  font-family:UniversS 45 Light;
+  color:white;
+  font-weight:bold;
+  font-size: 50px;
+}
+
+h2 {
+  font-family: Microsoft JhengHei;
+  color: white;
+  font-size: 30px;
+}
+
+
+.input-text {
+  text-align: center;
+  border: none;
+  border-radius: 35px;
+  width: 200px;
+  font-family: Segoe UI;
+  font-size: 30px;
+  color: #403F3F;
+}
+
+.input-checkbox:checked {
+  background-color: #3C47D8;
+}
+
+.input-checkbox {
+  border-radius: 10px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid white;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.input-radius {
+  height: 40px;
+  width: 40px;
+}
+
+input {
+  margin: 15px 0px;
+}
+
+label {
+  vertical-align: super;
+}
+
+a {
+  text-decoration: none;
+}
+
+form, .form-dialog {
+  background: rgba(38, 38, 38, 0.58);
+  border-radius: 43px;
+  padding: 30px;
+  width: fit-content;
+}
+
+button, input[type="submit"] {
+  border-radius: 43px;
+  min-height: 73px;
+  min-width: 200px;
+  font-family: Segoe UI;
+  font-size: 34px;
+}
+
+.button-principal {
+  color: #5E5E5E;
+  background-color: white;
+  border: none;
+}
+
+
+  .button-principal:hover {
+    background-color: #3C47D8;
+    color: white;
+  }
+
+.button-secondary {
+  border: solid 1px white;
+  color: white;
+  background-color: transparent;
+}
+
+
+  .button-secondary:hover {
+    border: none;
+    background-color: #3C47D8;
+    color: white;
+  }
+
+.buttons-panel button {
+  margin: 10px;
+}
+
+/*HEADER*/
+
+header {
+  height: 80px;
+  padding-top: 25px;
+}
+
+.header_menu {
+  display: inline;
+  position: relative;
+  top: 20%;
+}
+
+header ul, ul li {
+  display: inline;
+}
+
+header ul li {
+  margin: 0px 43px;
+}
+
+
+.icon_headers li {
+  margin: 0px 23px;
+}
+
+header nav ul {
+  font-size: 24px;
+  font-family: Segoe UI;
+}
+
+.icon_headers {
+  position: absolute;
+  margin-right: 20px;
+  right: 0;
+}
+
+header ul li a {
+  color: transparent;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li a:hover {
+  color: #3C47D8;
+}
+
+.icon {
+  height: 50px;
+}
+
+.text-danger {
+  color: #e66a6a;
+}
+
+/*BODY*/
+.body {
+
+}
+
+/*FOOTER*/
+footer {
+  background: rgba(159, 158, 158, .58);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+}
+
+footer div {
+  display: flex;
+}
+
+footer img {
+  margin: 20px 0px 0px 100px;
+  height: 50px;
+}
+
+footer p {
+  position: absolute;
+  right: 0;
+  margin: 30px 50px 0px 0px;
+  font-size: 26px;
+  font-family: Segoe UI;
+  color: white;
+}
+
+
+  /*HOME*/
+.price {
+  position: absolute;
+  right: 10%;
+  min-width: 200px;
+  bottom: 17%;
+  border-radius: 43px;
+  background-color: #3C47D8;
+  margin: 25px;
+}
+
+.price p {
+  color: white;
+  font-family: Segoe UI;
+  font-size: 34px;
+  margin: 20px;
+}
+
+.left-arrow img, .right-arrow img {
+  height: 50px;
+  width: 50px;
+}
+
+.dot, .dot-selected {
+  height: 13px;
+  width: 13px;
+}
+
+.dots {
+  position: relative;
+  bottom: 16px;
+}
+
+.card {
+  display:initial;
+}
+
+.card-collapsed {
+  display:none;
+}
+
+.home-product-picture {
+  height: 500px;
+}
+
+/*EXAMPLE*/
+.example {
+    padding: 50px 150px;
+}
+
+* {
+  font-family: Segoe UI;
+  color: white;
+  font-size: 24px;
+}
+
+/*PRODCUt DETAILS*/
+.star-yellow {
+    font-size: 50px;
+    color: orange;
+}
+
+.details-description {
+    display: inline-flex;
+    width: 500px;
+    margin-right: 130px;
+}
+
+.star {
+    font-size: 50px;
+}
+
+.details picture {
+    float: right;
+}
+
+.details-product-picture {
+    height: 400px;
+}
+
+.details > .form-dialog {
+    margin: auto;
+    min-height: 500px;
+}
+
+.details-price {
+    display: inline-flex;
+    min-width: 200px;
+    border-radius: 43px;
+    background-color: #3C47D8;
+    margin: 25px;
+}
+
+.details-price p {
+    color: white;
+    font-family: Segoe UI;
+    font-size: 34px;
+    margin: 20px;
+}
+
+/*SEARCH*/
+.search > .form-dialog {
+    margin: auto;
+    min-width: 1000px;
+}
+
+.search form {
+    background-color: transparent;
+}
+
+.search-panel > .card {
+    border-radius: 0;
+    min-height: 0px;
+    min-width: 0px;
+    font-family: Segoe UI;
+    font-size: 20px;
+    padding: 5px;
+    background-color: transparent;
+    border: solid 1px whitesmoke;
+    margin: 20px;
+}
+
+.search-panel > .card > img {
+    height: 150px;
+}
+
+.search input[type="submit"] {
+    background-color: transparent;
+    height: 50px;
+    min-height: 0px;
+    min-width: 0px;
+    width: 180px;
+}
+
+.search input[type="submit"]:hover {
+    color: #656179;
+    border: solid 1px #372297;
+}
+
+/*PRODUCT LIST*/
+.product-list {
+    margin: 80px 50px 0px 50px;
+    background: rgba(38, 38, 38, 0.58);
+    border-radius: 43px;
+    padding: 30px;
+    width: fit-content;
+}
+
+  .product-list td, .product-list th{
+    padding: 15px;
+  }
+
+/*USER*/
+#loginForm, .register-form {
+  /* margin: 80px 0px 0px 50px;*/
+  padding: 50px 150px;
+}
+
+#loginForm .input-text, .register-form .input-text {
+  width: 350px;
+}
+
+/* ABM Producto */
+/* TODO: evaluar poner esto en css separado */
+.form-control {
+  display: block;
+  width: 80%;
+  height: 22px;
+  padding: 6px 12px;
+  color: #555555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.form-control-file {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+}
+
+.small-text {
+    font-size: 16px;
+}
+
+.button-success, .button-default {
+    color: white;
+    border-radius: 5px;
+    font-size: 90%;
+    height: 35px;
+}
+
+.color-success {
+    background: rgb(28, 190, 65);
+}
+
+.color-warning {
+    background: rgb(237, 94, 39);
+}
+
+.color-default {
+    background-color: rgb(225, 225, 225);
+    color: black;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    user-select: none;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.btn:hover, .btn:focus, .btn.focus {
+    color: #333;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 100px;
+}
+
+select {
+    display: block;
+    width: 80%;
+    padding: 0px 12px;
+    color: #555555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 15px 0px;
+}
+
+select option {
+    color: #555555;
+}
+
+td a .icon {
+  height: 35px;
+}
+
+/*CART*/
+
+.cart-form {
+  margin: 20px;
+}
+
+.cart-form th, .cart-form td {
+  padding: 15px;
+}
+
+.cart-form td a:hover {
+  color: #3C47D8;
+}
+
+.contact-panel {
+  margin: 50px auto;
+}
+
+.contact-panel a:hover {
+  color: #3C47D8;
+}
+
+/*ORDER*/
+.order-form {
+  margin: 20px;
+}
+
+.order-form h2 {
+  margin: 10px;
+}
+
+.order-form div {
+  min-width: 315px;
+}
+
+.order-form form {
+  margin: 0px auto;
+}
+
+.card-number, .card-name {
+  width: 400px;
+}
+
+.credit-card-icon {
+  height: 60px;
+  display: flex;
+  float: right;
+}
+
+/*ARTIST*/
+.artistpanel {
+  margin: 20px;
+}
+
+.artistpanel h2 {
+  margin: 10px;
+}
+
+.artistpanel div {
+  min-width: 315px;
+}
+
+.artistpanel form {
+  margin: 0px auto;
+}
+
+/*USER*/
+.userpanel {
+  margin: 20px;
+}
+
+.userpanel h2 {
+  margin: 10px;
+}
+
+.userpanel div {
+  min-width: 315px;
+}
+
+.userpanel form {
+  margin: 0px auto;
+}
+
+/*PRODUCT*/
+.productpanel {
+  margin: 20px;
+}
+
+.productpanel h2 {
+  margin: 10px;
+}
+
+.productpanel div {
+  min-width: 315px;
+}
+
+.productpanel form {
+  margin: 0px auto;
+}
+
+.form-control-file {
+  font-family: Segoe UI;
+  color: white;
+  font-size: 24px;
+}
+
+.productpanel .stars {
+  width: 280px;
+}

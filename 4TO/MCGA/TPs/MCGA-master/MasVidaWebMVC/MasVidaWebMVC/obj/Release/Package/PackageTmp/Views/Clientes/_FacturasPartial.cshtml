@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MasVidaWebMVC.Transaction>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionCreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionPaymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionTypeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>Herramientas</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionCreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionPaymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionTypeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            
+             @if(item.IsPaid == false && item.TransactionTypeID == (int)MasVidaWebMVC.Common.AppConstants.TransactionType.LIQUIDACION){
+                @Html.ActionLink("Pagar", "Pagar", "Clientes", new { id = item.TransactionID, userId = item.Users.UserID }, new { @class="btn btn-success"})
+            }
+             @Html.ActionLink("Imprimir", "Imprimir", "Clientes", new { id = item.TransactionID }, new { @class="btn btn-default", @target = "_blank"})
+        </td>
+    </tr>
+}
+
+</table>

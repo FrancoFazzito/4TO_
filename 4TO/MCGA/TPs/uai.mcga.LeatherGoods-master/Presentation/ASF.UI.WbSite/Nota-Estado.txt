@@ -1,0 +1,1 @@
+﻿Aprobado: Sólo está disponible si el estado actual de la orden de compra es En espera de aprobación

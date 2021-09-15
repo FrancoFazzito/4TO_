@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MasVidaContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="MasVidaDB_Connection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="MasVidaContext.Account" />
+    <EntitySet Name="FamiliesGroups" EntityType="MasVidaContext.FamilyGroup" />
+    <EntitySet Name="Parameters" EntityType="MasVidaContext.Parameter" />
+    <EntitySet Name="Products" EntityType="MasVidaContext.Product" />
+    <EntitySet Name="Transactions" EntityType="MasVidaContext.Transaction" />
+    <EntitySet Name="TransactionsTypes" EntityType="MasVidaContext.TransactionType" />
+    <EntitySet Name="Users" EntityType="MasVidaContext.User" />
+    <EntitySet Name="UsersTypes" EntityType="MasVidaContext.UserType" />
+    <AssociationSet Name="FK_Account_Transactions" Association="MasVidaContext.FK_Account_Transactions">
+      <End Role="Transactions" EntitySet="Transactions" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Account_Users" Association="MasVidaContext.FK_Account_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_FamiliesGroups" Association="MasVidaContext.FK_Users_FamiliesGroups">
+      <End Role="FamiliesGroups" EntitySet="FamiliesGroups" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Products" Association="MasVidaContext.FK_Users_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_TransactionsTypes" Association="MasVidaContext.FK_Transactions_TransactionsTypes">
+      <End Role="TransactionsTypes" EntitySet="TransactionsTypes" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Users" Association="MasVidaContext.FK_Transactions_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UsersTypes" Association="MasVidaContext.FK_Users_UsersTypes">
+      <End Role="UsersTypes" EntitySet="UsersTypes" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Account" Association="MasVidaContext.FK_Transactions_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Account" Association="MasVidaContext.FK_Users_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_Products" Association="MasVidaContext.FK_Transactions_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="LastTransactionID" Type="Int32" />
+    <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <NavigationProperty Name="User" Relationship="MasVidaContext.FK_Account_Users" FromRole="Account" ToRole="Users" />
+    <NavigationProperty Name="Transactions" Relationship="MasVidaContext.FK_Transactions_Account" FromRole="Account" ToRole="Transaction" />
+    <NavigationProperty Name="Users" Relationship="MasVidaContext.FK_Users_Account" FromRole="Account" ToRole="User" />
+  </EntityType>
+  <EntityType Name="FamilyGroup">
+    <Key>
+      <PropertyRef Name="FamilyGroupID" />
+    </Key>
+    <Property Name="FamilyGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FamilyName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Users" Relationship="MasVidaContext.FK_Users_FamiliesGroups" FromRole="FamiliesGroups" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Parameter">
+    <Key>
+      <PropertyRef Name="ParameterID" />
+    </Key>
+    <Property Name="ParameterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParameterName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ParameterValue" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ParameterDescription" Type="Binary" MaxLength="250" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ProductPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="MasVidaContext.FK_Users_Products" FromRole="Products" ToRole="Users" />
+    <NavigationProperty Name="Transactions" Relationship="MasVidaContext.FK_Transactions_Products" FromRole="Product" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="Int32" Nullable="false" />
+    <Property Name="TransactionTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="ProductPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="TransactionCreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransactionPaymentDate" Type="DateTime" Precision="3" />
+    <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="MasVidaContext.FK_Account_Transactions" FromRole="Transactions" ToRole="Account" />
+    <NavigationProperty Name="TransactionsType" Relationship="MasVidaContext.FK_Transactions_TransactionsTypes" FromRole="Transactions" ToRole="TransactionsTypes" />
+    <NavigationProperty Name="User" Relationship="MasVidaContext.FK_Transactions_Users" FromRole="Transactions" ToRole="Users" />
+    <Property Type="Int32" Name="AccountID" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="MasVidaContext.FK_Transactions_Account" FromRole="Transaction" ToRole="Account" />
+    <NavigationProperty Name="Products" Relationship="MasVidaContext.FK_Transactions_Products" FromRole="Transaction" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="TransactionTypeID" />
+    </Key>
+    <Property Name="TransactionTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionTypeName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="TransactionTypeDescription" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Transactions" Relationship="MasVidaContext.FK_Transactions_TransactionsTypes" FromRole="TransactionsTypes" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DNI" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="UserName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="FamilyGroupID" Type="Int32" />
+    <Property Name="CreationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="FamiliesGroup" Relationship="MasVidaContext.FK_Users_FamiliesGroups" FromRole="Users" ToRole="FamiliesGroups" />
+    <NavigationProperty Name="Product" Relationship="MasVidaContext.FK_Users_Products" FromRole="Users" ToRole="Products" />
+    <NavigationProperty Name="Transactions" Relationship="MasVidaContext.FK_Transactions_Users" FromRole="Users" ToRole="Transactions" />
+    <NavigationProperty Name="UsersType" Relationship="MasVidaContext.FK_Users_UsersTypes" FromRole="Users" ToRole="UsersTypes" />
+    <Property Type="Int32" Name="AccountID" />
+    <NavigationProperty Name="Account" Relationship="MasVidaContext.FK_Users_Account" FromRole="User" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Users" Relationship="MasVidaContext.FK_Users_UsersTypes" FromRole="UsersTypes" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Account_Transactions">
+    <End Role="Transactions" Type="MasVidaContext.Transaction" Multiplicity="0..1" />
+    <End Role="Account" Type="MasVidaContext.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transactions">
+        <PropertyRef Name="TransactionID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="LastTransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Account_Users">
+    <End Role="Users" Type="MasVidaContext.User" Multiplicity="1" />
+    <End Role="Account" Type="MasVidaContext.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_FamiliesGroups">
+    <End Role="FamiliesGroups" Type="MasVidaContext.FamilyGroup" Multiplicity="0..1" />
+    <End Role="Users" Type="MasVidaContext.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FamiliesGroups">
+        <PropertyRef Name="FamilyGroupID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="FamilyGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Products">
+    <End Role="Products" Type="MasVidaContext.Product" Multiplicity="0..1" />
+    <End Role="Users" Type="MasVidaContext.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_TransactionsTypes">
+    <End Role="TransactionsTypes" Type="MasVidaContext.TransactionType" Multiplicity="1" />
+    <End Role="Transactions" Type="MasVidaContext.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionsTypes">
+        <PropertyRef Name="TransactionTypeID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="TransactionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Users">
+    <End Role="Users" Type="MasVidaContext.User" Multiplicity="1" />
+    <End Role="Transactions" Type="MasVidaContext.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UsersTypes">
+    <End Role="UsersTypes" Type="MasVidaContext.UserType" Multiplicity="1" />
+    <End Role="Users" Type="MasVidaContext.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsersTypes">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Account">
+    <End Type="MasVidaContext.Account" Role="Account" Multiplicity="1" />
+    <End Type="MasVidaContext.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Account">
+    <End Type="MasVidaContext.Account" Role="Account" Multiplicity="0..1" />
+    <End Type="MasVidaContext.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_Products">
+    <End Type="MasVidaContext.Product" Role="Product" Multiplicity="1" />
+    <End Type="MasVidaContext.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

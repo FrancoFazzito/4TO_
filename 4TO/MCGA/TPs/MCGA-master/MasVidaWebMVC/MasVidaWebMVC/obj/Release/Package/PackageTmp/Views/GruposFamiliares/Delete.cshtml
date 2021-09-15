@@ -1,0 +1,25 @@
+﻿@model MasVidaWebMVC.FamilyGroup
+
+@{
+    ViewBag.Title = "Grupos Familiares";
+}
+
+<h2>Delete</h2>
+
+<h3>Esta seguro que desea eliminar?</h3>
+<fieldset>
+    <legend>Grupo Familiar</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FamilyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FamilyName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        @Html.ActionLink("Volver", "Index")
+    </p>
+}

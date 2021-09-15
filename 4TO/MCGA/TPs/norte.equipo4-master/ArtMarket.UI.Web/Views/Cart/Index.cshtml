@@ -1,0 +1,79 @@
+﻿@using ArtMarket.Entities.Model
+@model Cart
+
+
+<form action="/" method="post" class="cart-form">
+
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CartItem.FirstOrDefault().Product.Artist.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CartItem.FirstOrDefault().Product.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CartItem.FirstOrDefault().Product.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CartItem.FirstOrDefault().Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CartItem.FirstOrDefault().Product.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CartItem.FirstOrDefault().Price)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.CartItem)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.Product.Artist.LastName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => item.Product.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Product.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Product.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Price)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("-", "Decrease", new { id = item.Id })
+                    </td>
+                    <td>
+                        @Html.ActionLink("+", "Increase", new { id = item.Id })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        @if (Model != null && Model.CartItem.Count > 0)
+        {
+            <div>
+                <button type="button" class="button-principal" onclick="location.href = '@Url.Action("Payment", "Order")'">Finalizar</button>
+            </div>
+        }
+
+    </div>
+
+</form>
+

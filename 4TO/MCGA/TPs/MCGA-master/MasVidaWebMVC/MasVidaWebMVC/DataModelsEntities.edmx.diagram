@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a16b7e3e0d041edb5d904957b4d08bc" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.FamilyGroup" Width="1.5" PointX="7.625" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.Parameter" Width="2" PointX="7.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.Product" Width="1.75" PointX="2.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.Transaction" Width="1.5" PointX="0.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.TransactionType" Width="2.25" PointX="2.375" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.User" Width="1.625" PointX="5.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.UserType" Width="1.5" PointX="7.625" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="MasVidaWebMVC.DataModels.FK_Users_FamiliesGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="MasVidaWebMVC.DataModels.FK_Transactions_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="MasVidaWebMVC.DataModels.FK_Users_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="MasVidaWebMVC.DataModels.FK_Transactions_TransactionsTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MasVidaWebMVC.DataModels.FK_Users_UsersTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MasVidaWebMVC.DataModels.FK_Transactions_Users" />
+        <EntityTypeShape EntityType="MasVidaWebMVC.DataModels.Audit" Width="1.5" PointX="10" PointY="2.75" />
+        <AssociationConnector Association="MasVidaWebMVC.DataModels.FK_Audits_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

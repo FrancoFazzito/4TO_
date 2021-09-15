@@ -1,0 +1,238 @@
+﻿@{
+    ViewBag.Title = "Mi calendario";
+    ViewBag.Description = "En esta página vamos a poder ver el calendario del profesional que esta en sesión.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(CalendarioProfesionalControllerRoute.GetCalendario)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+<style type="text/css">
+    #desde::before {
+        content: "Desde";
+        padding-right: 10px;
+        color: #afafaf;
+    }
+</style>
+
+
+<h2>Mi calendario </h2>
+<h5>@ViewBag.NombreProfesional</h5>
+<hr class="hrSinMarginTop" />
+
+<div class="form-horizontal content-personalizado">
+    <div class="row marginUnset">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="form-group">
+                <input id="desde" class="form-control form-control-sm inputSinMaxWidth" type="date" />
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="form-group">
+                @Html.DropDownList("EspecialidadId", null, "- Todas las especialidades -", htmlAttributes: new { @class = "form-control form-control-sm inputSinMaxWidth" })
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-12 col-sm-12">
+            <div class="form-group">
+                <a id="buscar" title="Buscar calendario" class="btn btn-sm btn-secondary text-white" onclick="CargarCalendario();">
+                    <i class="fa fa-search"></i>
+                    <span class="d-xl-none d-lg-none">Buscar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-6">
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <div class="row marginUnset" id="tituloReferenciaEspecialidadColor">
+    </div>
+    <div class="row marginUnset mb-2" id="referenciaEspecialidadColor">
+    </div>
+</div>
+
+<div class="modal fade" id="atenderPaciente">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-light" style="background-color:#7428a7!important;">
+                <h4 class="modal-title">Atender turno</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <p> <label class="font-weight-bold">Paciente: </label> <label id="SubTituloPaciente"></label></p>
+                        <p> <label class="font-weight-bold">Fecha y hora: </label> <label id="SubTituloFechaHora"></label></p>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.Label("Síntomas", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("Sintomas", new { htmlAttributes = new { @class = "form-control inputSinMaxWidth" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            @Html.Label("Diagnóstico", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("Diagnostico", new { htmlAttributes = new { @class = "form-control inputSinMaxWidth" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @Html.Hidden("TurnoId")
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger text-white" title="Cancelar" data-dismiss="modal">
+                    <i class="fa fa-ban"></i>
+                    Cancelar
+                </a>
+                <a class="btn btn-success text-white" title="Confirmar" onclick="AtenderTurno();">
+                    <i class="fa fa-check-circle"></i>
+                    Atendido
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_TurnoAtendido")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            // Setear el primer dia de la semana actual
+            $("#desde").val(moment().startOf('isoWeek').format('YYYY-MM-DD'));
+
+            $('#calendar').fullCalendar({
+                themeSystem: 'bootstrap4',
+                locale: 'es',
+                defaultView: 'agendaWeek',
+                allDaySlot: false,
+                minTime: "07:00:00",
+                maxTime: "21:00:00",
+                slotDuration: "01:00:00",
+                nowIndicator: true,
+                header: {
+                    left: '',
+                    center: 'title',
+                    right: 'agendaWeek,agendaDay'
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                    if (calEvent.atendido != true) {
+                        if (calEvent.Id != -1) {
+                            Event_Click(calEvent, jsEvent, view);
+                        }
+                        else
+                            alert('NO hay turno registrado para atender.');
+                    }
+                }
+            });
+            CargarCalendario();
+        });
+
+        function Event_Click(calEvent, jsEvent, view)
+        {
+            $("#SubTituloPaciente").text(calEvent.title);
+            $("#SubTituloFechaHora").text(calEvent.start.format('dddd DD MMM YYYY') + ' ' + calEvent.start.format('HH:mm'));
+            $("#TurnoId").val(calEvent.Id);
+            $("#Sintomas").val('');
+            $("#Diagnostico").val('');
+            $("#atenderPaciente").modal('show');
+        }
+
+        function CargarCalendario() {
+            $('#calendar').fullCalendar('gotoDate', $("#desde").val());
+            $('#calendar').fullCalendar('removeEventSources');
+            $("#referenciaEspecialidadColor").empty();
+            $("#tituloReferenciaEspecialidadColor").empty();
+            $.ajax({
+                url: '@Url.Action("GetCalendarioViewProfesional", "CalendarioProfesional")',
+                datatype: "json",
+                async: false,
+                data: { fechaDesde: $('#calendar').fullCalendar('getView').start.format('YYYY-MM-DD'), fechaHasta: $('#calendar').fullCalendar('getView').end.format('YYYY-MM-DD'), especialidadProfesional: $("#EspecialidadId").val() },
+                success: function (result) {
+                    var events = [];
+                    $.each(result.Eventos, function (i, data) {
+                        events.push(
+                            {
+                                Id: data.IdTurno,
+                                title: data.Titulo,
+                                description: data.Descripcion,
+                                start: moment(data.FechaInicio).format('YYYY-MM-DD HH:mm'),
+                                end: moment(data.FechaFin).format('YYYY-MM-DD HH:mm'),
+                                backgroundColor: data.BackgroundColor,
+                                borderColor: data.BorderColor,
+                                textColor: data.FontColor,
+                                atendido: data.Atendido,
+                                className: 'eventoPersonalizado'
+                            });
+                    });
+                    var divTitulo = $('<div class="col-lg-12 col-md-12 col-sm-12"><label style="font-size:1rem; font-weight:500;">Especialidades</label></div>');
+                    $("#tituloReferenciaEspecialidadColor").append(divTitulo);
+                    $.each(result.EspecialidadColor, function (i, data) {
+                        //Aca poner las referencias de los colores
+                        var divCol = $('<div class="col-lg-2 col-md-2 col-sm-12"></div>');
+                        var divReferenciaEspecialidad = $('<div class="form-group referenciaColor" style="background-color: ' + data.Color + ';"></div>');
+                        divReferenciaEspecialidad.append(data.Especialidad);
+                        divCol.append(divReferenciaEspecialidad);
+                        $("#referenciaEspecialidadColor").append(divCol);
+                    });
+                    $('#calendar').fullCalendar('addEventSource', events);
+                }
+            });
+        }
+
+        function AtenderTurno()
+        {
+            var jsonAtencion = JSON.stringify({
+                'TurnoId': $("#TurnoId").val(),
+                'Sintomas': $("#Sintomas").val(),
+                'Diagnostico': $("#Diagnostico").val()
+            });
+            
+            $.ajax({
+                url: '@Url.Action("AtenderTurno", "CalendarioProfesional")',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: "json",
+                data: jsonAtencion ,
+                success: function (response) {
+
+                    if (response != null) {
+                        $("#atenderPaciente").modal('hide');
+                        CargarCalendario();
+
+                        $('#turnoAtendido').fadeIn(1000);
+                        setTimeout(function () {
+                            $('#turnoAtendido').fadeOut(1000);
+                        }, 5000);
+                    } else {
+                        alert("NO se atendio el turno");
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    </script>
+}

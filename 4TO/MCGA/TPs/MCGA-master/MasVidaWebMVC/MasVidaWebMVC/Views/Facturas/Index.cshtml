@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<MasVidaWebMVC.Transaction>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    @Html.ActionLink("Generar", "GenerarComprobantes", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Imprimir", "ImprimirComprobantes", null, new { @class = "btn btn-primary", @target = "_blank"  })
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+            Fecha de Transaccion
+        </th>
+       @* <th>
+            @Html.DisplayNameFor(model => model.TransactionPaymentDate)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </th>*@
+        <th>
+            Tipo de Transaccion
+        </th>
+       @* <th>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </th>*@
+        
+        <th>
+            Herramientas
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class=" @(@item.TransactionTypeID == (int)MasVidaWebMVC.Common.AppConstants.TransactionType.RECIBO ? "success" : "") ">
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.Name)  @Html.DisplayFor(modelItem => item.Users.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.ProductPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionCreationDate)
+        </td>
+       @* <td>
+            @Html.DisplayFor(modelItem => item.TransactionPaymentDate)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IsPaid)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionType.TransactionTypeName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Product.ProductName)
+        </td>*@
+        
+        <td>
+          @*  @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TransactionID })*@
+            
+            @if(item.IsPaid == false && item.TransactionTypeID == (int)MasVidaWebMVC.Common.AppConstants.TransactionType.LIQUIDACION){
+                @Html.ActionLink("Pagar", "Pagar", new { id = item.TransactionID }, new { @class="btn btn-success"})
+            }
+             @Html.ActionLink("Imprimir", "Imprimir", new { id = item.TransactionID }, new { @class="btn btn-default", @target = "_blank"})
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager( Model, page => Url.Action("Index", new { page }) )

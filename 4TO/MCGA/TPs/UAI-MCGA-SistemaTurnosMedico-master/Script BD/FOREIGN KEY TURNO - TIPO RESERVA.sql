@@ -1,0 +1,1 @@
+ALTER TABLE Turno ADD CONSTRAINT FK_Turno_TipoReserva FOREIGN KEY (reserva) REFERENCES TipoReseva (ID)

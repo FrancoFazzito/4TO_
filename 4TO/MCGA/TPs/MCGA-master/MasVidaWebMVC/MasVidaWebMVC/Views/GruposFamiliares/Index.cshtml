@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MasVidaWebMVC.FamilyGroup>
+
+@{
+    ViewBag.Title = "Grupos Familiares - Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FamilyName)
+        </th>
+        <th>Herramientas</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FamilyName)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.FamilyGroupID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.FamilyGroupID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.FamilyGroupID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,49 @@
+﻿@model ArtMarket.Entities.Model.User
+@{
+    ViewBag.Title = "Modificar usuario";
+}
+
+<div class="userpanel">
+    <form method="post" action="/User/DoUpdate">
+        <h2 style="padding-bottom:10px">Modificar usuario</h2>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstName">Nombre</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" value="@Model.FirstName">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Apellido</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" value="@Model.LastName" ">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" value="@Model.Email">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="city">Ciudad</label>
+                <input type="text" class="form-control" id="city" name="city" value="@Model.City">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="country">País</label>
+                <input type="text" class="form-control" id="country" name="country" value="@Model.Country">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="signupDate">Fecha de registro</label>
+                <input type="date" class="form-control" id="signupDate" name="signupDate"
+                       value="@Model.SignUpDate.ToString("yyyy-MM-dd")" min="2017-01-01" max="2020-08-01">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="orderCount">Cantidad de pedidos</label>
+                <input type="number" class="form-control" id="orderCount" name="orderCount" min="0" max="500" value="@Model.OrderCount">
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.Id)
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>

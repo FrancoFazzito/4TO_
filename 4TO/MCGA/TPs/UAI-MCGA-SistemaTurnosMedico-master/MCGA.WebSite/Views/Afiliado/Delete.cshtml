@@ -1,0 +1,156 @@
+﻿@model MCGA.Entities.Afiliado
+@{
+    ViewBag.Title = "Profesional";
+    ViewBag.Description = "En esta página vamos a poder eliminar afiliados del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(AfiliadoControllerRoute.GetDelete)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+<h2>Eliminar <small>afiliado</small></h2>
+
+<h3>¿Estás seguro?</h3>
+<hr class="hrSinMarginTop" />
+<div class="content-personalizado">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoDocumentoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDocumento.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoSexoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoSexo.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoCivilId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCivil.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroAfiliado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroAfiliado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Habilitado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Habilitado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group text-right paddingLeftRight_15">
+            <div class="form-actions no-color">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    <a class="btn btn-sm" href="@Url.Action("Index", "Afiliado")">
+        <i class="fa fa-chevron-circle-left"></i>
+        Volver al listado
+    </a>
+</div>
+

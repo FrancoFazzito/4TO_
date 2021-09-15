@@ -1,0 +1,132 @@
+﻿@model IEnumerable<MasVidaWebMVC.User>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reporte de Clientes Activos</title>
+
+    <style type="text/css">
+        body {
+            padding: 0;
+        }
+
+        #contenedor {
+            max-width: 1200px;
+            min-width: 500px;
+            margin: auto;
+        }
+
+        th, td {
+            padding: 2px 8px;
+            border: 1px solid black;
+        }
+
+        .col_inter th, .col_inter td {
+            border: 0;
+        }
+
+        table {
+            text-align: left;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 100;
+        }
+
+    </style>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DNI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FamiliesGroup.FamilyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountTotal)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DNI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FamiliesGroup.FamilyName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountTotal)
+                </td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+﻿@model MCGA.Entities.Turno
+@{
+    ViewBag.Title = "Turno";
+    ViewBag.Description = "En esta página vamos a poder agregar turnos del sistema.";
+    ViewBag.Author = Application.Name;
+    ViewBag.ReferrerMode = ReferrerMode.OriginWhenCrossOrigin;
+    ViewBag.TwitterCard = new SummaryLargeImageTwitterCard("@TwitterCard");
+    ViewBag.OpenGraph = new OpenGraphBusiness(
+        ViewBag.Title,
+        new OpenGraphImage(Url.AbsoluteContent("~/fonts/icons/open-graph-1200x630.png")) { Height = 630, Type = ContentType.Png, Width = 1200 },
+        new OpenGraphContactData(Application.StreetAddress, Application.Locality, Application.PostalCode, Application.Country)
+        {
+            Email = Application.Email,
+            Phone = Application.Phone,
+            Website = Url.AbsoluteRouteUrl(TurnoControllerRoute.GetCreate)
+        },
+        new OpenGraphLocation(Application.Latitude, Application.Longitude))
+    {
+        Determiner = OpenGraphDeterminer.Blank,
+        SiteName = Application.Name
+    };
+}
+
+
+<h2>Nuevo <small>turno</small> </h2>
+<hr class="hrSinMarginTop" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal content-personalizado">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <ul class="nav nav-pills paddingLeftRight_15">
+            <li class="nav-item">
+                <a id="aGeneral" class="nav-link active" onclick="return false;" href="#General">General</a>
+            </li>
+            <li class="nav-item">
+                <a id="aAtencion" class="nav-link" onclick="return false;" href="#Atencion">Fecha y hora</a>
+            </li>
+            <li class="nav-item">
+                <a id="aConfirmacion" class="nav-link" onclick="return false;" href="#Confirmacion">Confirmación</a>
+            </li>
+        </ul>
+        <hr />
+        <div class="tab-content ">
+            <div class="tab-pane container active" id="General">
+                <div class="form-group">
+                    @if (User.IsInRole("Paciente"))
+                    {
+                        @Html.LabelFor(model => model.AfiliadoId, null, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("BuscarAfiliado", (string)ViewBag.AfiliadoLogueadoNombreApellido,
+                            new
+                            {
+                                @class = "form-control disabled",
+                                autocomplete = "off",
+                                placeholder = "Ingrese el afiliado",
+                                @readonly = "readonly"
+                            })
+                            @Html.Hidden("AfiliadoId", (string)ViewBag.AfiliadoLogueadoId)
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.LabelFor(model => model.AfiliadoId, null, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("BuscarAfiliado", null,
+                            new
+                            {
+                                @class = "form-control",
+                                autocomplete = "off",
+                                placeholder = "Ingrese el afiliado",
+                            })
+                            @Html.ValidationMessageFor(model => model.AfiliadoId, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.AfiliadoId)
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Especialidad", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("BuscarEspecialidad", null,
+                        new
+                        {
+                            @class = "form-control",
+                            autocomplete = "off",
+                            placeholder = "Ingrese la especialidad",
+                        })
+                        @Html.Hidden("EspecialidadId")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Profesional", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("BuscarProfesional", null,
+                        new
+                        {
+                            @class = "form-control",
+                            autocomplete = "off",
+                            placeholder = "Ingrese el profesional",
+                        })
+                        @Html.ValidationMessageFor(model => model.EspecialidadProfesionalId, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.EspecialidadProfesionalId)
+
+                    </div>
+                </div>
+                <div class="form-group d-flex">
+                    <div class="col-md-12 text-right">
+                        <a class="btn btn-secondary text-white" title="Siguiente" onclick="$('#aAtencion').tab('show');">
+                            Siguiente
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane container fade" id="Atencion">
+                <div class="form-group">
+                    @Html.Label("Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div id="datepickerFecha"></div>
+                        @Html.HiddenFor(model => model.Fecha)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Horario", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select id="cboHorario" class="form-control" onchange="$('#Hora').val($('#cboHorario').val());"></select>
+                        @Html.HiddenFor(model => model.Hora)
+                    </div>
+                </div>
+
+                <div class="form-group d-flex">
+                    <div class="col-md-6 text-left">
+                        <a class="btn btn-secondary text-white" title="Anterior" onclick="$('#aGeneral').tab('show');">
+                            <i class="fa fa-arrow-circle-left"></i>
+                            Anterior
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a class="btn btn-secondary text-white" title="Siguiente" onclick="$('#aConfirmacion').tab('show');">
+                            Siguiente
+                            <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane container fade" id="Confirmacion">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.reserva, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @if (User.IsInRole("Paciente"))
+                    {
+                        <div class="col-md-10">
+                            @Html.TextBox("TipoReserva", (string)ViewBag.ReservaOnlineNombre,
+                            new
+                            {
+                                @class = "form-control",
+                                @readonly = "readonly"
+                            })
+                            @Html.Hidden("reserva", (string)ViewBag.ReservaOnlineId)
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-10">
+                            @Html.DropDownList("reserva", null, "-Seleccionar reserva-", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.reserva, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Observaciones, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group d-flex">
+                    <div class="col-md-6 text-left">
+                        <a class="btn btn-secondary text-white" title="Anterior" onclick="$('#aAtencion').tab('show');">
+                            <i class="fa fa-arrow-circle-left"></i>
+                            Anterior
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check-circle"></i>
+                            Confirmar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a class="btn btn-sm" href="@Url.Action("Index", "Turno")">
+        <i class="fa fa-chevron-circle-left"></i>
+        Volver al listado
+    </a>
+</div>
+
+
+
+
+@section Scripts {
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/plugins/print/plugin.min.js"></script>
+    <script src="~/Scripts/tinymce/plugins/textcolor/plugin.min.js"></script>
+    <script src="~/Scripts/tinymce/plugins/lists/plugin.min.js"></script>
+    
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        tinymce.init({
+            selector: '#Observaciones',
+            height: 200,
+            max_height: 200,
+            min_height: 200,
+            menubar: false,
+            statusbar: false,
+            plugins: "lists, textcolor, print",
+            toolbar: 'fontselect | fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor | numlist bullist | print',
+            font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;',
+            fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt'
+
+        });
+
+        $("#BuscarEspecialidad").autocomplete({
+            autoSelect: true,
+            autoFocus: true,
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetEspecialidad", "Especialidad")',
+                    datatype: "json",
+                    data: { Areas: '', term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return { label: val.Name, value: val.Name, Id: val.Id };
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#EspecialidadId").val(ui.item.Id);
+                $("#EspecialidadProfesionalId").val('');
+                $("#BuscarProfesional").val('');
+            }
+        });
+
+        $("#BuscarProfesional").autocomplete({
+            autoSelect: true,
+            autoFocus: true,
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetEspecialidadProfesionalByEspecialidad", "EspecialidadesProfesional")',
+                    datatype: "json",
+                    data: { Areas: '', term: request.term, idEspecialidad: $("#EspecialidadId").val() },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return { label: val.Name, value: val.Name, Id: val.Id };
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#EspecialidadProfesionalId").val(ui.item.Id);
+                //Cargar fecha disponible del profesional especialidad
+                CargarFechasDisponibles($("#EspecialidadProfesionalId").val());
+            }
+        });
+
+        $("#BuscarAfiliado").autocomplete({
+            autoSelect: true,
+            autoFocus: true,
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetAfiliado", "Afiliado")',
+                    datatype: "json",
+                    data: { Areas: '', term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (val, item) {
+                            return { label: val.Name, value: val.Name, Id: val.Id };
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#AfiliadoId").val(ui.item.Id);
+            }
+        });
+
+        function CargarFechasDisponibles(idEspecialidadProfesional) {
+            $.ajax({
+                url: '@Url.Action("GetFechasDisponiblesByIdEspecialidadProfesional", "Agenda")',
+                datatype: "json",
+                async:false,
+                data: { idEspecialidadProfesional: idEspecialidadProfesional},
+                success: function (data) {
+                    $("#datepickerFecha").datepicker(
+                        $.extend({
+                            changeMonth: true,
+                            changeYear: true,
+                            beforeShowDay: function (date) {
+                                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                                if (data.indexOf(string) != -1)
+                                    return [true];
+                                else
+                                    return [false];
+                            },
+                            onSelect: function (date) {
+                                var res = date.split("/");
+                                $("#Fecha").val(res[2] + '-' + res[1] + '-' + res[0]);
+                                CargarHorarioDisponibles($('#EspecialidadProfesionalId').val(),date);
+                            }
+                        }, $.datepicker.regional["es"])
+                    );
+                }
+            });
+        }
+
+        function CargarHorarioDisponibles(idEspecialidadProfesional, fechaString) {
+
+            var listFecha = fechaString.split("/");
+            var fecha = new Date(listFecha[2], listFecha[1] - 1, listFecha[0]);
+            $.ajax({
+                url: '@Url.Action("GetHorarioDisponiblesByIdEspecialidadProfesionalFecha", "Agenda")',
+                datatype: "json",
+                async:false,
+                data: { idEspecialidadProfesional: idEspecialidadProfesional, fecha: moment(fecha).format("YYYY-MM-DD")},
+                success: function (data) {
+
+                    var datos = data;
+                    $("#cboHorario").empty();
+                    for (var i = 0; i < datos.length; i++) {
+                        $("#cboHorario").append($('<option>', {
+                            value: datos[i].HoraValue,
+                            text: datos[i].HoraText
+                        }));
+                    }
+                    $("#Hora").val($('#cboHorario').val());
+                }
+            });
+        }
+
+    </script>
+}

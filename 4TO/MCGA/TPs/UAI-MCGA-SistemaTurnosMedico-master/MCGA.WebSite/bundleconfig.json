@@ -1,0 +1,26 @@
+[
+  {
+    "outputFileName": "Content/Carousel.min.css",
+    "inputFiles": [
+      "Content/Carousel.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Site.min.css",
+    "inputFiles": [
+      "Content/Site.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/SocialBar.min.css",
+    "inputFiles": [
+      "Content/SocialBar.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/PagedList.min.css",
+    "inputFiles": [
+      "Content/PagedList.css"
+    ]
+  }
+]

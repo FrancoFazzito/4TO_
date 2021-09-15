@@ -1,0 +1,192 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+<!DOCTYPE html>
+<html lang="es">
+<head @(ViewBag.OpenGraph == null ? null : Html.OpenGraphNamespace((OpenGraphMetadata)ViewBag.OpenGraph))>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Somos Clínica Alejandría</title>
+    <link rel="shortcut icon" href="/fonts/Icons/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/fonts/Icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/fonts/Icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/fonts/Icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/fonts/Icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/fonts/Icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/fonts/Icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/fonts/Icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/fonts/Icons/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/fonts/Icons/apple-touch-icon-180x180.png" />
+    <meta name="theme-color" content="#1E1E1E">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/fullcalendar.print.min.css" rel="stylesheet" media="print" />
+
+    <meta name="description" content="@ViewBag.Description">
+    @if (ViewBag.Author != null)
+    {
+        <meta name="author" content="@ViewBag.Author">
+    }
+    @if (ViewBag.TwitterCard != null)
+    {
+        @Html.TwitterCard((TwitterCard)ViewBag.TwitterCard);
+    }
+    @if (ViewBag.OpenGraph != null)
+    {
+        @Html.OpenGraph((OpenGraphMetadata)ViewBag.OpenGraph);
+    }
+    @if (ViewBag.ReferrerMode != null)
+    {
+        @Html.ReferrerMeta((ReferrerMode)ViewBag.ReferrerMode)
+    }
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125974509-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-125974509-1');
+    </script>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Navegar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="@Url.Action("Index", "Home")">
+                <img src="~/fonts/Logo.png" alt="Clinica Alejandría" />
+            </a>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item item-principal">@Html.ActionLink("INICIO", "Index", "Home", new { }, htmlAttributes: new { @class = "nav-link" })</li>
+                    <li class="nav-item item-principal">@Html.ActionLink("¿QUIENES SOMOS?", "About", "Home", new { }, htmlAttributes: new { @class = "nav-link" })</li>
+                    <li class="nav-item item-principal bordeDerechoMenuPrincipal">@Html.ActionLink("CONTACTO", "Contact", "Home", new { }, htmlAttributes: new { @class = "nav-link" })</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+
+
+    @using Microsoft.AspNet.Identity
+    @if (!Request.IsAuthenticated)
+    {
+        <div class="navbar d-none d-lg-block d-xl-block bg-dark">
+            <div class="container">
+                <p class="text-center text-light">
+                    Somos un centro asistencial privado, que presta servicios de cuidado y atención en maternidad y patologías clínico-quirúrgicas prevalentes
+                </p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarToggler" aria-expanded="false" aria-label="Navegar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarPrincipal">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" id="mnuPrincipal">
+                        @if (User.IsInRole("Profesional"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Calendario", "CalendarioProfesional")">Mi calendario</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Afiliado")">Afiliados</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Paciente"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Create", "Turno")">Sacar turno</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Index", "Turno")">Mis turnos</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Administrador"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("CalendarioProfesional", "CalendarioGeneral")">Calendario profesional</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("CalendarioEspecialidad", "CalendarioGeneral")">Calendario especialidad</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle item-principal" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    CONFIGURACION
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("Index", "Afiliado")">Afiliado</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "Agenda")">Agenda</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "Especialidad")">Especialidad</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "EstadoCivil")">Estado civil</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "EspecialidadesProfesional")">Especialidades de profesional</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "Plan")">Plan</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "Profesional")">Profesional</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "TipoCancelacion")">Tipo de cancelación</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "TipoDia")">Tipo de día</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "TipoDocumento")">Tipo de documento</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "TipoEspecialidad")">Tipo de especialidad</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "TipoReseva")">Tipo de reserva</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "TipoSexo")">Tipo de sexo</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "Turno")">Turno</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+
+    <div class="container">
+        <div class="siteMap">
+            @Html.MvcSiteMap().SiteMapPath()
+        </div>
+        <hr class="hrSinMarginTop" />
+        <div class="body-content">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            <div class="pull-right">
+                &copy; @DateTime.Now.Year - Sistema de turnos - Clínica Alejandría - Parasiliti, Diego Nicolás
+            </div>
+            <div class="pull-left">
+                <a href="https://es-la.facebook.com/uai.elfuturososvos" class="btn btn-sm fa fa-facebook"></a>
+                <a href="https://twitter.com/uainow" class="btn btn-sm fa fa-twitter"></a>
+                <a href="https://ar.linkedin.com/company/uai" class="btn btn-sm fa fa-linkedin"></a>
+                <a href="https://plus.google.com/113155245406425976841" class="btn btn-sm fa fa-google-plus"></a>
+                <a href="https://www.youtube.com/user/UAIelfuturososvos" class="btn btn-sm fa fa-youtube"></a>
+                <a href="https://www.instagram.com/uainow" class="btn btn-sm fa fa-instagram"></a>
+            </div>
+        </footer>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("Modal", required: false)
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("div[style='opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;']").remove();
+            $("div[style='margin: 0px; padding: 0px; left: 0px; width: 100%; height: 65px; right: 0px; bottom: 0px; display: block; position: fixed; z-index: 2147483647; opacity: 0.9; background-color: rgb(32, 32, 32);']").remove();
+            $("div[onmouseover='S_ssac();']").remove();
+            $("center").remove();
+        });
+    </script>
+
+</body>
+</html>

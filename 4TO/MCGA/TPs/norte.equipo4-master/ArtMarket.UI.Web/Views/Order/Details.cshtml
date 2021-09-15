@@ -1,0 +1,35 @@
+﻿@using ArtMarket.Entities.Model
+@model IList<ArtMarket.Entities.Model.OrderDetail>
+
+@{
+  ViewBag.Title = "Detalles de la orden";
+}
+
+<div class="order-form form-dialog" style="margin:20px auto;">
+    <h2 style="padding-bottom:10px">Detalle de la Orden</h2>
+    <table class="table" style="text-align:center;">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    @foreach (OrderDetail orderDetail in Model)
+    {
+      <tr>
+        <td> @orderDetail.Id</td>
+        <td> @orderDetail.Product.Title</td>
+        <td> @orderDetail.Quantity</td>
+        <td> @orderDetail.Price</td>
+      </tr>
+    }
+
+  </table>
+</div>
+
+
+

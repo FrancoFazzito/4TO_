@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Asociación Mutual +Vida • Rosario - @ViewBag.title</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/Font-Awesome/css/font-awesome.min.css" type="text/css">
+    <!-- Plugin CSS -->
+    <link href="@Url.Content("~/css/animate.min.css")" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="@Url.Content("~/css/creative.css")" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body id="page-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="@Url.Content("~/Home/Index#page-top")">MUTUAL +VIDA</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="mnuAbout">
+                        <a class="page-scroll" href="@Url.Content("~/Home/Index#about")" onclick="navigatorMenu('About');">Sobre Nosotros</a>
+                    </li>
+                    <li id="mnuServices">
+                        <a class="page-scroll" href="@Url.Content("~/Home/Index#services")" onclick="navigatorMenu('Services');">Servicios</a>
+                    </li>
+                    @*<li id="mnuPortfolio">
+                        <a class="page-scroll" href="@Url.Content("~/Home/Index#portfolio")" onclick="navigatorMenu('Portfolio');">Ipsum</a>
+                    </li>*@
+                    <li id="mnuContact">
+                        <a class="page-scroll" href="@Url.Content("~/Home/Index#contact")" onclick="navigatorMenu('Contact');">Contáctenos</a>
+                    </li>
+
+                    @Html.Partial("_LoginPartial")
+                
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    @RenderBody()
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.js")"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="@Url.Content("~/js/bootstrap.min.js")"></script>
+
+    <!-- Plugin JavaScript -->
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.easing.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/jquery.fittext.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/wow.min.js")"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script type="text/javascript" src="@Url.Content("~/js/creative.js")"></script>
+    @RenderSection("scripts", required: false)
+
+    <script>
+
+        function navigatorMenu(page) {
+            $('#mnuAbout').removeClass('active');
+            $('#mnuServices').removeClass('active');
+            $('#mnuPortfolio').removeClass('active');
+            $('#mnuContact').removeClass('active');
+            $('#mnu' + page).addClass('active');
+        }
+
+        function ShowErrorMsg(msg) {
+            document.getElementById("errorText").innerHTML = msg;
+            $('#errorModal').modal('show');
+        }
+
+        function GetNavigatorVersion() {
+            var device = navigator.userAgent;
+            if (!(device.match(/Iphone/i) || device.match(/Ipod/i) || device.match(/Android/i) || device.match(/J2ME/i) || device.match(/BlackBerry/i) || device.match(/iPhone|iPad|iPod/i) || device.match(/Opera Mini/i) || device.match(/IEMobile/i) || device.match(/Mobile/i) || device.match(/Windows Phone/i) || device.match(/windows mobile/i) || device.match(/windows ce/i) || device.match(/webOS/i) || device.match(/palm/i) || device.match(/bada/i) || device.match(/series60/i) || device.match(/nokia/i) || device.match(/symbian/i) || device.match(/HTC/i))) {
+                if (device.indexOf('Firefox') != -1 && parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('Firefox') + 8)) >= 15) {//Firefox
+                    //Allow
+                } else if (device.indexOf('Chrome') != -1 && parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('Chrome') + 7).split(' ')[0]) >= 25) {//Chrome
+                    //Allow
+                } else if (device.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Version') != -1 && parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('Version') + 8).split(' ')[0]) >= 5) {//Safari
+                    //Allow
+                } else if (device.indexOf('MSIE') != -1 && parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf('MSIE') + 5)) >= 9) {
+                    //Allow
+                }
+                else {
+                    $('#invalidModal').modal('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
