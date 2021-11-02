@@ -1,0 +1,16 @@
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\Infra.deps.json
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\Infra.dll
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\Infra.pdb
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\Application.dll
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\DatabaseWrapper.dll
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\Domain.dll
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\Application.pdb
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\DatabaseWrapper.pdb
+C:\Users\Franc\source\repos\WebApiDDD\Infra\bin\Debug\netstandard2.1\Domain.pdb
+C:\Users\Franc\source\repos\WebApiDDD\Infra\obj\Debug\netstandard2.1\Infra.csproj.AssemblyReference.cache
+C:\Users\Franc\source\repos\WebApiDDD\Infra\obj\Debug\netstandard2.1\Infra.AssemblyInfoInputs.cache
+C:\Users\Franc\source\repos\WebApiDDD\Infra\obj\Debug\netstandard2.1\Infra.AssemblyInfo.cs
+C:\Users\Franc\source\repos\WebApiDDD\Infra\obj\Debug\netstandard2.1\Infra.csproj.CoreCompileInputs.cache
+C:\Users\Franc\source\repos\WebApiDDD\Infra\obj\Debug\netstandard2.1\Infra.csproj.CopyComplete
+C:\Users\Franc\source\repos\WebApiDDD\Infra\obj\Debug\netstandard2.1\Infra.dll
+C:\Users\Franc\source\repos\WebApiDDD\Infra\obj\Debug\netstandard2.1\Infra.pdb

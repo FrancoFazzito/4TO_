@@ -1,0 +1,11 @@
+C:\Users\Franco\source\repos\MrClean\Repositorio\bin\Debug\Repositorio.dll
+C:\Users\Franco\source\repos\MrClean\Repositorio\bin\Debug\Repositorio.pdb
+C:\Users\Franco\source\repos\MrClean\Repositorio\bin\Debug\Database.dll
+C:\Users\Franco\source\repos\MrClean\Repositorio\bin\Debug\Entidades.dll
+C:\Users\Franco\source\repos\MrClean\Repositorio\bin\Debug\Database.pdb
+C:\Users\Franco\source\repos\MrClean\Repositorio\bin\Debug\Entidades.pdb
+C:\Users\Franco\source\repos\MrClean\Repositorio\obj\Debug\Repositorio.csproj.AssemblyReference.cache
+C:\Users\Franco\source\repos\MrClean\Repositorio\obj\Debug\Repositorio.csproj.CoreCompileInputs.cache
+C:\Users\Franco\source\repos\MrClean\Repositorio\obj\Debug\Repositorio.csproj.CopyComplete
+C:\Users\Franco\source\repos\MrClean\Repositorio\obj\Debug\Repositorio.dll
+C:\Users\Franco\source\repos\MrClean\Repositorio\obj\Debug\Repositorio.pdb

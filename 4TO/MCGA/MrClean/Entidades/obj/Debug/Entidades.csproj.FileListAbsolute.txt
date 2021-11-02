@@ -1,0 +1,6 @@
+C:\Users\Franco\source\repos\MrClean\Entidades\bin\Debug\Entidades.dll
+C:\Users\Franco\source\repos\MrClean\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.dll
+C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.pdb

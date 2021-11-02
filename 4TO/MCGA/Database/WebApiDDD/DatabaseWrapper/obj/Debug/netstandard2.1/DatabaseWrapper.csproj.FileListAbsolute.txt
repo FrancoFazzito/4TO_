@@ -1,0 +1,9 @@
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\bin\Debug\netstandard2.1\DatabaseWrapper.deps.json
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\bin\Debug\netstandard2.1\DatabaseWrapper.dll
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\bin\Debug\netstandard2.1\DatabaseWrapper.pdb
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\obj\Debug\netstandard2.1\DatabaseWrapper.csproj.AssemblyReference.cache
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\obj\Debug\netstandard2.1\DatabaseWrapper.AssemblyInfoInputs.cache
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\obj\Debug\netstandard2.1\DatabaseWrapper.AssemblyInfo.cs
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\obj\Debug\netstandard2.1\DatabaseWrapper.csproj.CoreCompileInputs.cache
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\obj\Debug\netstandard2.1\DatabaseWrapper.dll
+C:\Users\Franc\source\repos\WebApiDDD\DatabaseWrapper\obj\Debug\netstandard2.1\DatabaseWrapper.pdb

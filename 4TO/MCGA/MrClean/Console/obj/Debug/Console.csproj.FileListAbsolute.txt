@@ -1,0 +1,16 @@
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Console.exe.config
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Console.exe
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Console.pdb
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Entidades.dll
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Negocio.dll
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Repositorio.dll
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Database.dll
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Entidades.pdb
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Negocio.pdb
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Repositorio.pdb
+C:\Users\Franco\source\repos\MrClean\Console\bin\Debug\Database.pdb
+C:\Users\Franco\source\repos\MrClean\Console\obj\Debug\Console.csproj.AssemblyReference.cache
+C:\Users\Franco\source\repos\MrClean\Console\obj\Debug\Console.csproj.CoreCompileInputs.cache
+C:\Users\Franco\source\repos\MrClean\Console\obj\Debug\Console.csproj.CopyComplete
+C:\Users\Franco\source\repos\MrClean\Console\obj\Debug\Console.exe
+C:\Users\Franco\source\repos\MrClean\Console\obj\Debug\Console.pdb

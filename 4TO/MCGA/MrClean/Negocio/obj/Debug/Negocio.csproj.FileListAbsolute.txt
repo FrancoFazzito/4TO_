@@ -1,0 +1,13 @@
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Negocio.dll
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Entidades.dll
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Repositorio.dll
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Database.dll
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Entidades.pdb
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Repositorio.pdb
+C:\Users\Franco\source\repos\MrClean\Negocio\bin\Debug\Database.pdb
+C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.dll
+C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.pdb

@@ -1,0 +1,6 @@
+C:\Users\Franco\source\repos\MrClean\Database\bin\Debug\Database.dll
+C:\Users\Franco\source\repos\MrClean\Database\bin\Debug\Database.pdb
+C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.csproj.AssemblyReference.cache
+C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.csproj.CoreCompileInputs.cache
+C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.dll
+C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.pdb

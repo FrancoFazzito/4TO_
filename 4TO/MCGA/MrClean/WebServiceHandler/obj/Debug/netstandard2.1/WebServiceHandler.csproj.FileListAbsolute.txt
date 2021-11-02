@@ -1,0 +1,9 @@
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\bin\Debug\netstandard2.1\WebServiceHandler.deps.json
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\bin\Debug\netstandard2.1\WebServiceHandler.dll
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\bin\Debug\netstandard2.1\WebServiceHandler.pdb
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\obj\Debug\netstandard2.1\WebServiceHandler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\obj\Debug\netstandard2.1\WebServiceHandler.AssemblyInfoInputs.cache
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\obj\Debug\netstandard2.1\WebServiceHandler.AssemblyInfo.cs
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\obj\Debug\netstandard2.1\WebServiceHandler.csproj.CoreCompileInputs.cache
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\obj\Debug\netstandard2.1\WebServiceHandler.dll
+C:\Users\Franco\source\repos\MrClean\WebServiceHandler\obj\Debug\netstandard2.1\WebServiceHandler.pdb
