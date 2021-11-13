@@ -1,10 +1,15 @@
 ﻿using Entidades;
 using Negocio;
+using System.Collections.Generic;
+using System.Xml;
+using System.Linq;
 
 namespace Console
 {
     public class Program
     {
+        private static GestorProducto _gestorProducto = new GestorProducto();
+
         private static void Main(string[] args)
         {
             CrearDatos();

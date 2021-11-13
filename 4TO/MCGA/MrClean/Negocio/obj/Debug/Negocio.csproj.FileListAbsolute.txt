@@ -11,3 +11,16 @@ C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.csproj.CoreCompil
 C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.dll
 C:\Users\Franco\source\repos\MrClean\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Negocio.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Entidades.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Repositorio.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Database.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Entidades.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Repositorio.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\bin\Debug\Database.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\obj\Debug\Negocio.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Negocio\obj\Debug\Negocio.pdb

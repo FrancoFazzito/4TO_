@@ -4,3 +4,9 @@ C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.csproj.Assemb
 C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.dll
 C:\Users\Franco\source\repos\MrClean\Entidades\obj\Debug\Entidades.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Entidades\bin\Debug\Entidades.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Entidades\obj\Debug\Entidades.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Entidades\obj\Debug\Entidades.pdb

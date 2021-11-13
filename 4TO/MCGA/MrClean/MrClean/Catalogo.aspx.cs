@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Web.UI;
+using System.Xml;
 
 namespace MrClean
 {
@@ -22,12 +23,23 @@ namespace MrClean
                 Response.Redirect("Login.aspx");
             }
             _gestorProducto = new GestorProducto();
-            Listar();
+            ListarProductos();
         }
 
-        private void Listar()
+        private void ListarProductos()
         {
-            DgvProductos.DataSource = _gestorProducto.ObtenerTodos().Select(p => new ProductoCatalogo()
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(_gestorProducto.ObtenerTodosPorXML());
+            var productos = from XmlNode producto in xmlDocument.ChildNodes[0].ChildNodes
+                            select new Producto()
+                            {
+                                Id = int.Parse(producto.Attributes["Id"].Value),
+                                Nombre = producto.Attributes["Nombre"].Value,
+                                Precio = decimal.Parse(producto.Attributes["Precio"].Value),
+                                RutaImagen = producto.Attributes["RutaImagen"].Value
+                            };
+
+            DgvProductos.DataSource = productos.Select(p => new ProductoCatalogo()
             {
                 Id = p.Id,
                 Nombre = p.Nombre,

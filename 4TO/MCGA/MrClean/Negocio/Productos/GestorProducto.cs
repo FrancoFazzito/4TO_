@@ -1,6 +1,8 @@
 ﻿using Entidades;
 using Repositorio;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
 
 namespace Negocio
 {
@@ -20,6 +22,42 @@ namespace Negocio
         public List<Producto> ObtenerTodos()
         {
             return _productoRepositorio.ObtenerTodos();
+        }
+
+        public string ObtenerTodosPorXML()
+        {
+            var productos = _productoRepositorio.ObtenerTodos();
+            var xmlDoc = new XmlDocument();
+            var rootNode = xmlDoc.CreateElement("Productos");
+            xmlDoc.AppendChild(rootNode);
+            
+            foreach (var producto in productos)
+            {
+                var productNode = xmlDoc.CreateElement("Producto");
+                productNode.InnerText = producto.Nombre;
+
+                var id = xmlDoc.CreateAttribute("Id");
+                id.Value = producto.Id.ToString();
+                productNode.Attributes.Append(id);
+
+                var nombre = xmlDoc.CreateAttribute("Nombre");
+                nombre.Value = producto.Nombre;
+                productNode.Attributes.Append(nombre);
+
+                var precio = xmlDoc.CreateAttribute("Precio");
+                precio.Value = producto.Precio.ToString();
+                productNode.Attributes.Append(precio);
+
+                var rutaImagen = xmlDoc.CreateAttribute("RutaImagen");
+                rutaImagen.Value = producto.RutaImagen.ToString();
+                productNode.Attributes.Append(rutaImagen);
+
+                rootNode.AppendChild(productNode);
+            }
+
+            var Filename = "C:\\Users\\Franc\\Documents\\XML\\Productos.xml";
+            xmlDoc.Save(Filename);
+            return Filename;
         }
 
         public void AltaProducto(Producto producto)

@@ -4,3 +4,9 @@ C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.csproj.Assembly
 C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.csproj.CoreCompileInputs.cache
 C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.dll
 C:\Users\Franco\source\repos\MrClean\Database\obj\Debug\Database.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Database\bin\Debug\Database.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Database\bin\Debug\Database.pdb
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Database\obj\Debug\Database.csproj.AssemblyReference.cache
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Database\obj\Debug\Database.csproj.CoreCompileInputs.cache
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Database\obj\Debug\Database.dll
+C:\Users\Franc\Downloads\4TO_\4TO\MCGA\MrClean\Database\obj\Debug\Database.pdb
