@@ -64,6 +64,10 @@ namespace MrClean
             var importe = servicio.ObtenerCostoEnvio(codigoPostal, _importeTotal);
             lblPrecioEnvio.Text = $"${importe.CostoEnvio}";
             LblPrecioFinalConEnvio.Text = $"${importe.ImporteTotal}";
+            if (string.IsNullOrEmpty(TxtDireccion.Text))
+            {
+                Session["EnvioCalculado"] = false;
+            }
             Session["EnvioCalculado"] = true;
             LblInfoEnvio.Text = string.Empty;
         }
@@ -91,7 +95,9 @@ namespace MrClean
                         productos.Add(producto);
                     }
                 }
-                var codigo = _gestorCompra.RegistrarCompra(productos);
+
+                var direccion = TxtDireccion.Text;
+                var codigo = _gestorCompra.RegistrarCompra(productos, direccion);
                 TxtCodigo.Text = codigo.ToString();
                 LblnfoCompra.ForeColor = Color.Green;
                 LblnfoCompra.Text = "Su compra se realizo con exito, su codigo aparece mas arriba y debera compartirlo con su repartidor";
@@ -99,7 +105,7 @@ namespace MrClean
             else
             {
                 LblInfoEnvio.ForeColor = Color.Red;
-                LblInfoEnvio.Text = "Debe ingresar el codigo postal de envio para poder realizar la compra";
+                LblInfoEnvio.Text = "Debe ingresar el codigo postal de envio y la direccion para poder realizar la compra";
             }
         }
     }

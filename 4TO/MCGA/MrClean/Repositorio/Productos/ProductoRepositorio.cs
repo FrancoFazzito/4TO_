@@ -15,7 +15,8 @@ namespace Repositorio
             Id = row.GetValue<int>("Id"),
             Nombre = row.GetValue<string>("Nombre"),
             Precio = row.GetValue<decimal>("Precio"),
-            RutaImagen = row.GetValue<string>("rutaImagen")
+            RutaImagen = row.GetValue<string>("rutaImagen"),
+            Stock = row.GetValue<int>("Stock")
         };
 
         public Producto ObtenerPorId(int id)

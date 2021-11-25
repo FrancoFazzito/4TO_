@@ -1,6 +1,5 @@
 ﻿using Negocio;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace MrClean
@@ -12,8 +11,8 @@ namespace MrClean
         protected void Page_Load(object sender, EventArgs e)
         {
             _gestorBackup = new GestorBackup();
-            DgvErrores.DataSource = DigitoVerificador.Errores.Select(error => new 
-            { 
+            DgvErrores.DataSource = DigitoVerificador.Errores.Select(error => new
+            {
                 Error = error
             });
             DgvErrores.DataBind();

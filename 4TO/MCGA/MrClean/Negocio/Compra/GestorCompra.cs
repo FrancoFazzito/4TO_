@@ -20,7 +20,7 @@ namespace Negocio
             return _compraRepositorio.ObtenerCompras().Where(c => !c.Entregado).ToList();
         }
 
-        public int RegistrarCompra(List<Producto> productos)
+        public int RegistrarCompra(List<Producto> productos, string direccion)
         {
             var codigo = CodigoRandom;
             var codigoHasheado = new HasherObjeto().HashearObjeto(codigo);
@@ -30,7 +30,7 @@ namespace Negocio
                 Entregado = false,
                 Usuario = UsuarioLogueado.Instancia.Usuario.Email
             };
-            _compraRepositorio.RegistrarCompra(compra, codigoHasheado);
+            _compraRepositorio.RegistrarCompra(compra, codigoHasheado, direccion);
             return codigo;
         }
 

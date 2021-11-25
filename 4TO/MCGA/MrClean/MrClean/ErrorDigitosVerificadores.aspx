@@ -7,7 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <style type="text/css">
-        .table-bordered {}
+        .table-bordered {
+        }
     </style>
 </head>
 <body>
@@ -22,7 +23,7 @@
                 <RowStyle HorizontalAlign="Center" VerticalAlign="Middle" />
             </asp:GridView>
             <br />
-            <asp:Button ID="BtnRestaurar" runat="server" class="btn btn-success" Height="57px" Text="Restaurar" Width="185px" Font-Size="15pt" ForeColor="Black" OnClick="BtnRestaurar_Click"  />
+            <asp:Button ID="BtnRestaurar" runat="server" class="btn btn-success" Height="57px" Text="Restaurar" Width="185px" Font-Size="15pt" ForeColor="Black" OnClick="BtnRestaurar_Click" />
         </div>
     </form>
 </body>

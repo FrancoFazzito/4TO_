@@ -10,6 +10,8 @@
         Precio de la compra:
         <asp:Label ID="lblPrecio" runat="server"></asp:Label>
         <br />
+        <asp:Label ID="Label2" runat="server" Text="Direccion:"></asp:Label>
+        <asp:TextBox ID="TxtDireccion" runat="server" ReadOnly="True" Width="170px"></asp:TextBox>
         <br />
         <asp:DropDownList ID="DropDownCodigosPostales" runat="server" CssClass="btn btn-primary dropdown-toggle" DataTextField="Codigo postal" Height="35px" Width="136px" BackColor="#6BC5E2">
             <asp:ListItem>B1650</asp:ListItem>

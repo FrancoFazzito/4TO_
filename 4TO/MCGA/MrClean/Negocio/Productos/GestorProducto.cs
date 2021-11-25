@@ -1,7 +1,7 @@
 ﻿using Entidades;
 using Repositorio;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace Negocio
@@ -30,8 +30,8 @@ namespace Negocio
             var xmlDoc = new XmlDocument();
             var rootNode = xmlDoc.CreateElement("Productos");
             xmlDoc.AppendChild(rootNode);
-            
-            foreach (var producto in productos)
+
+            foreach (var producto in productos.Where(producto => producto.Stock > 0))
             {
                 var productNode = xmlDoc.CreateElement("Producto");
                 productNode.InnerText = producto.Nombre;
@@ -51,7 +51,6 @@ namespace Negocio
                 var rutaImagen = xmlDoc.CreateAttribute("RutaImagen");
                 rutaImagen.Value = producto.RutaImagen.ToString();
                 productNode.Attributes.Append(rutaImagen);
-
                 rootNode.AppendChild(productNode);
             }
 

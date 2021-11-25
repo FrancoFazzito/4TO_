@@ -2,14 +2,13 @@
 using Entidades;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace Repositorio
 {
     public class CompraRepositorio : SqlDbReadonly<Compra>
     {
-        private UsuarioRepositorio _usuarioRepositorio;
+        private readonly UsuarioRepositorio _usuarioRepositorio;
 
         public CompraRepositorio()
         {
@@ -32,13 +31,14 @@ namespace Repositorio
             return GetAll().ToList();
         }
 
-        public void RegistrarCompra(Compra compra, string codigo)
+        public void RegistrarCompra(Compra compra, string codigo, string direccion)
         {
-            var commandCompra = _database.NonQuery("INSERT INTO Compra VALUES (@total,@codigo,@entregada,@usuario)")
+            var commandCompra = _database.NonQuery("INSERT INTO Compra VALUES (@total,@codigo,@entregada,@usuario,@direccion)")
                                          .WithParam("total", compra.CalcularTotal())
                                          .WithParam("codigo", codigo)
                                          .WithParam("entregada", compra.Entregado)
-                                         .WithParam("usuario", _usuarioRepositorio.ObtenerUsuarioPorMail(compra.Usuario).Id);
+                                         .WithParam("usuario", _usuarioRepositorio.ObtenerUsuarioPorMail(compra.Usuario).Id)
+                                         .WithParam("direccion", direccion);
 
             var transaction = _database.Transaction()
                                        .AddCommand(commandCompra);
@@ -47,6 +47,8 @@ namespace Repositorio
             {
                 transaction.AddCommand(_database.NonQuery("INSERT INTO CompraProducto VALUES ((SELECT IDENT_CURRENT('Compra')), @Producto)")
                                                 .WithParam("Producto", producto.Id));
+                transaction.AddCommand(_database.NonQuery("UPDATE Producto SET stock = stock - 1 WHERE Id = @id")
+                                                .WithParam("id", producto.Id));
             }
 
             transaction.Execute();

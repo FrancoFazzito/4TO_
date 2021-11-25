@@ -1,5 +1,4 @@
 ﻿using Repositorio;
-using System.Configuration;
 
 namespace Negocio
 {
