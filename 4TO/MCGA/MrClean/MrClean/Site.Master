@@ -47,11 +47,14 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/Info">Info</a></li>
+                        <li><a runat="server" href="~/Contact">Contacto</a></li>
                         <li><a runat="server" href="~/Login">Login</a></li>
                         <li><a runat="server" href="~/Catalogo">Catalogo</a></li>
                         <li><a runat="server" href="~/Carrito">Carrito</a></li>
                         <li><a runat="server" href="~/Bitacora">Bitacora</a></li>
                         <li><a runat="server" href="~/Backup">Backup</a></li>
+                        <li><a runat="server" href="~/Productos">Productos</a></li>
                     </ul>
                 </div>
             </div>

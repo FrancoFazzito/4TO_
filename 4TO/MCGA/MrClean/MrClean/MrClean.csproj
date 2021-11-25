@@ -109,11 +109,17 @@
     <Content Include="Backup.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="Carrito.aspx" />
+    <Content Include="Contact.aspx" />
     <Content Include="ErrorDigitosVerificadores.aspx" />
+    <Content Include="Imagenes\img-limpieza.png" />
+    <Content Include="Imagenes\img-phone-1.png" />
+    <Content Include="Imagenes\img-world-1.png" />
+    <Content Include="Styles\EstiloContacto.css" />
     <Content Include="Imagenes\detergente.png" />
     <Content Include="Imagenes\jabon.png" />
     <Content Include="Imagenes\shampoo.png" />
     <Content Include="Imagenes\trapo.png" />
+    <Content Include="Info.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Catalogo.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -133,6 +139,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Productos.aspx" />
     <Content Include="WebServices\Compras\WebServiceComprasDisponibles.asmx" />
     <Content Include="WebServices\CostoEnvio\WebServiceEnvio.asmx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -192,6 +199,13 @@
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DigitoVerificador\DigitoVerificador.cs" />
     <Compile Include="ErrorDigitosVerificadores.aspx.cs">
       <DependentUpon>ErrorDigitosVerificadores.aspx</DependentUpon>
@@ -199,6 +213,13 @@
     </Compile>
     <Compile Include="ErrorDigitosVerificadores.aspx.designer.cs">
       <DependentUpon>ErrorDigitosVerificadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info.aspx.cs">
+      <DependentUpon>Info.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info.aspx.designer.cs">
+      <DependentUpon>Info.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -224,6 +245,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Productos.aspx.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Productos.aspx.designer.cs">
+      <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

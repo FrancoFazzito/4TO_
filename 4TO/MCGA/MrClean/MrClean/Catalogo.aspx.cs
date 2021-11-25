@@ -31,6 +31,7 @@ namespace MrClean
             var xmlDocument = new XmlDocument();
             xmlDocument.Load(_gestorProducto.ObtenerTodosPorXML());
             var productos = from XmlNode producto in xmlDocument.ChildNodes[0].ChildNodes
+                            where int.Parse(producto.Attributes["Stock"].Value) > 0
                             select new Producto()
                             {
                                 Id = int.Parse(producto.Attributes["Id"].Value),

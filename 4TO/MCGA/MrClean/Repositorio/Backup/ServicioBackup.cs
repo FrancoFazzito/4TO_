@@ -9,6 +9,7 @@ namespace Repositorio
     {
         private readonly string _ruta = ConfigurationManager.AppSettings["RutaBackup"];
         private readonly SqlDatabase<SqlConnection> _database;
+        private readonly string _nombreBD = "[MrCleanBD]";
 
         public ServicioBackup()
         {
@@ -18,7 +19,7 @@ namespace Repositorio
         public void Backup()
         {
             File.Delete(RutaBackup);
-            _database.NonQuery("backup database [MrClean] to disk = @ruta")
+            _database.NonQuery($"backup database {_nombreBD} to disk = @ruta")
                      .WithParam("ruta", RutaBackup)
                      .Execute();
         }
@@ -29,19 +30,19 @@ namespace Repositorio
             var connection = new SqlConnection(stringConexion);
             connection.Open();
 
-            var command = new SqlCommand("alter database [MrClean] set offline with rollback immediate", connection);
+            var command = new SqlCommand($"alter database {_nombreBD} set offline with rollback immediate", connection);
             command.ExecuteNonQuery();
 
-            command = new SqlCommand("restore database [MrClean] from disk = @ruta with replace", connection);
+            command = new SqlCommand($"restore database {_nombreBD} from disk = @ruta with replace", connection);
             command.Parameters.AddWithValue("ruta", RutaBackup);
             command.ExecuteNonQuery();
 
-            command = new SqlCommand("alter database [MrClean] set online", connection);
+            command = new SqlCommand($"alter database {_nombreBD} set online", connection);
             command.ExecuteNonQuery();
 
             connection.Close();
         }
 
-        public string RutaBackup => _ruta + "MrClean.bak";
+        public string RutaBackup => _ruta + "MrCleanBD.bak";
     }
 }

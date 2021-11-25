@@ -36,11 +36,12 @@ namespace Repositorio
 
         public void AltaProducto(Producto producto, string digitoVerificador)
         {
-            _database.NonQuery("INSERT INTO Producto VALUES (@nombre,@precio,@rutaImagen,@digitoVerificador)")
+            _database.NonQuery("INSERT INTO Producto VALUES (@nombre,@precio,@rutaImagen,@digitoVerificador,@stock)")
                      .WithParam("nombre", producto.Nombre)
                      .WithParam("precio", producto.Precio)
                      .WithParam("rutaImagen", producto.RutaImagen)
                      .WithParam("digitoVerificador", digitoVerificador)
+                     .WithParam("stock", producto.Stock)
                      .Execute();
         }
 

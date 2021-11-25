@@ -7,6 +7,7 @@
         public decimal Precio { get; set; }
         public string RutaImagen { get; set; }
         public int Stock { get; set; }
+
         public override string ToString()
         {
             return $"{Nombre}{Precio}{RutaImagen}";

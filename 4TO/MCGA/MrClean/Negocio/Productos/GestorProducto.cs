@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using Repositorio;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Xml;
 
@@ -31,7 +32,7 @@ namespace Negocio
             var rootNode = xmlDoc.CreateElement("Productos");
             xmlDoc.AppendChild(rootNode);
 
-            foreach (var producto in productos.Where(producto => producto.Stock > 0))
+            foreach (var producto in productos)
             {
                 var productNode = xmlDoc.CreateElement("Producto");
                 productNode.InnerText = producto.Nombre;
@@ -51,10 +52,15 @@ namespace Negocio
                 var rutaImagen = xmlDoc.CreateAttribute("RutaImagen");
                 rutaImagen.Value = producto.RutaImagen.ToString();
                 productNode.Attributes.Append(rutaImagen);
+
+                var stock = xmlDoc.CreateAttribute("Stock");
+                stock.Value = producto.Stock.ToString();
+                productNode.Attributes.Append(stock);
+
                 rootNode.AppendChild(productNode);
             }
 
-            var Filename = "C:\\Users\\Franc\\Documents\\XML\\Productos.xml";
+            var Filename = ConfigurationManager.AppSettings["RutaXML"];
             xmlDoc.Save(Filename);
             return Filename;
         }
